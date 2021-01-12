@@ -1,0 +1,218 @@
+:root {
+  --main-color: #8e231b;
+  --main-dark: #5b0000;
+  --secondary: #000;
+  --secondary-light: #212121;
+  --surface: #ddd;
+  --error: #8e651b;
+
+  background: black;
+}
+
+@font-face {
+  font-family: "Corleone";
+  src: url("/resources/fonts/Corleone.TTF");
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+span,
+nav p {
+  font-family: Corleone, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+
+p,
+#eventoDinero {
+  font-family: Open Sans, sans-serif;
+  font-size: 1rem;
+}
+
+h1 {
+  font-family: Corleone, sans-serif;
+  margin: 0 auto;
+  margin-top: 5vh;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-decoration: underline;
+  text-decoration-color: var(--main-color);
+  text-align: center;
+  font-size: 3.5rem;
+  color: white;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-family: Corleone, sans-serif;
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: var(--main-color);
+  letter-spacing: 2px;
+}
+
+hr {
+  margin: 0;
+  margin-top: -4vh;
+  margin-bottom: 2vh;
+  padding: 0;
+  width: 100vw;
+  border: none;
+  height: 5px;
+  background-color: var(--main-color);
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+/* main > div:first-child */
+main > nav,
+main > div:last-child {
+  background-color: black;
+  color: var(--surface);
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+main > nav {
+  justify-content: space-between;
+  padding-left: 1vw;
+  padding-right: 7vw;
+}
+
+main > div:last-child {
+  justify-content: space-evenly;
+}
+
+nav > div > p {
+  color: var(--main-color);
+  margin-top: -1vh;
+  box-sizing: border-box;
+}
+
+#imgPj {
+  width: 10vh;
+  position: fixed;
+  top: 4vh;
+  right: 2vw;
+  box-sizing: border-box;
+}
+
+#imgPj > img {
+  width: 100%;
+  border: 4px solid var(--main-color);
+  border-radius: 50%;
+  box-shadow: 0.5rem 0.3rem 0.5rem -0.5rem var(--main-dark);
+}
+
+#construcciones {
+  position: absolute;
+  right: 2%;
+  top: 200px;
+}
+
+#juegoTablero {
+  margin: 0 auto;
+  margin-bottom: 0.5%;
+  background-color: var(--error);
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0.3rem 0.3rem 0.5rem -0.5rem var(--error);
+}
+
+#eventoDinero {
+  position: fixed;
+  z-index: 99;
+  color: var(--surface);
+  top: 10.5rem;
+  left: 2vh;
+}
+
+p#juegoBadge {
+  color: var(--main-color);
+}
+
+.fas,
+.far {
+  font-size: 25px;
+  transition: 0.3s linear;
+}
+
+.fa-arrows-alt,
+.fa-trash,
+.fa-ban,
+.fa-power-off {
+  padding-left: 1.5em;
+}
+
+.fas:hover,
+.far:hover {
+  color: var(--main-dark) !important;
+  font-size: 30px;
+}
+
+.fa-money-bill-alt {
+  color: green;
+}
+
+.fa-power-off {
+  color: var(--main-color);
+}
+
+.fa-ban,
+.fa-arrows-alt,
+.fa-trash {
+  color: grey;
+}
+
+.botonEdificio {
+  width: 5rem;
+  padding: 0;
+  text-align: center;
+  border: 3px solid var(--error);
+  text-transform: uppercase;
+  cursor: grab;
+  box-shadow: 0.3rem 0.3rem 0.5rem -0.5rem var(--error);
+  box-sizing: border-box;
+  margin: 1rem;
+}
+
+.botonEdificio > img {
+  height: 3rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.botonEdificio > p {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#sorpresa {
+  width: 30%;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 25%;
+}
+
+.iluminado {
+  filter: drop-shadow(0 0 4px var(--error));
+  text-shadow: 0 0 10px var(--error), 0 0 10px var(--error);
+}

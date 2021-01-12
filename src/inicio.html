@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BalearicBuilding - EMPREZAR UNA PARTIDA</title>
+
+    <!-- Styles-->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles_pjs.css" />
+
+    <!-- tipografías -->
+    <!-- prettier-ignore -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+    </style>
+
+    <!--Fontawesome-->
+    <!-- prettier-ignore -->
+    <script src="https://kit.fontawesome.com/c20c034885.js" crossorigin="anonymous"></script>
+
+    <!--JQuery para importar Header y footer-->
+    <!-- prettier-ignore -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- scripts -->
+    <script type="module" src="js/scripts.js"></script>
+  </head>
+  <body>
+    <div class="grid-container">
+      <header></header>
+      <main>
+        <section>
+          <h1>Empezar juego</h1>
+        </section>
+        <section>
+          <h3>¡Elije tus opciones para empezar a jugar!</h3>
+          <form id="parametros" action="juego.html" method="get">
+            <div>
+              <label for="nickname"><strong>Nickname:</strong></label>
+              <input type="text" id="nickname" name="nickname" required />
+              <h4>Elige un mapa:</h4>
+              <select name="mapa" id="mapa">
+                <option value="palma">Palma Ciutat</option>
+                <option value="arenal">S'Arenal</option>
+                <option value="puigpunyent">Puigpunyent</option>
+                <option value="estrenc">Es Trenc</option>
+              </select>
+              <h4>Dificultades económicas:</h4>
+              <input
+                type="radio"
+                id="dificultadFacil"
+                name="dificultad"
+                value="dificultadFacil"
+              />
+              <label for="dificultadFacil">Político profesional ($$$$$)</label
+              ><br />
+              <input
+                type="radio"
+                id="dificultadDificil"
+                name="dificultad"
+                value="dificultadDificil"
+                checked="checked"
+              />
+              <label for="dificultadDificil">Estudiante de FP ($)</label><br />
+            </div>
+            <div>
+              <h4>Elige un personaje:</h4>
+              <div id="gridPersonajes"></div>
+              <input type="hidden" name="personaje" id="personaje" value="" />
+            </div>
+            <button type="button" value="Submit" id="startGame">
+              GAME START!
+            </button>
+          </form>
+        </section>
+      </main>
+      <aside>
+        <div id="asidePrincipal">
+          <h2>¿Cómo elijo mapa?</h2>
+          <p>
+            Elegir mapa puede ser una tarea complicada. Para facilitártelo, aquí
+            tienes un resumen rápido de los mapas disponibles... o, si lo
+            prefieres, puedes dejarlo al azar. Alea iacta est!
+          </p>
+          <hr />
+          <h3><i>Palma Ciutat</i></h3>
+          <p>
+            100% construible: ni 'zona de playa', ni 'terrenos protegidos', ni
+            tonterías. ¡A especular!
+          </p>
+          <hr />
+          <h3><i>S'Arenal</i></h3>
+          <p>
+            Fachada marítima con amplias zonas de playa. ¡Hazte de oro con los
+            hoteles!
+          </p>
+          <hr />
+          <h3><i>Puigpunyent</i></h3>
+          <p>
+            Para los amantes de los paisajes de interior. Cuidado con las zonas
+            protegidas y no urbanizables...
+          </p>
+          <hr />
+          <h3><i>Es Trenc</i></h3>
+          <p>
+            Sol, playa, y construcciones en zonas "protegidas". ¡Vive la
+            especulación urbanística más mallorquina!
+          </p>
+        </div>
+        <div>
+          <i class="fas fa-ghost"></i>
+          version 3.0
+        </div>
+      </aside>
+      <!-- Modal aviso de Cookies -->
+      <div id="myModal" class="modal">
+        <div class="modal_content modal_start">
+          <img src="images/imagenCookies_ovalo.png" alt="" />
+          <p>
+            Nosotros y nuestros socios de confianza utilizamos cookies y
+            tecnología de medición para ofrecerte una experiencia lo más
+            relevante posible. Para poder navegar por nuestra web debes
+            aceptarlas. 🍪 🍪 🍪
+          </p>
+          <button type="button">¡ENTENDIDO,GRACIAS!</button>
+          <div>
+            <a href="#">RECHAZAR</a>
+            <a href="#">MÁS INFORMACIÓN</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Modal aviso de Cookies -->
+      <footer></footer>
+    </div>
+  </body>
+</html>

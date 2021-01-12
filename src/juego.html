@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BalearicBuilding - JUEGO</title>
+    <!-- Styles-->
+    <link rel="stylesheet" type="text/css" href="css/styles_juego.css" />
+
+    <!-- tipografías -->
+    <!-- prettier-ignore -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+    </style>
+
+    <!-- PARCHE: Este código evitar que salten los errores en consola por
+      la ejecución de sonidos en el juego -->
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- FontAwesome-->
+    <!-- prettier-ignore -->
+    <script src="https://kit.fontawesome.com/c20c034885.js" crossorigin="anonymous" ></script>
+
+    <!-- Scripts -->
+    <script src="js/main.js" type="module"></script>
+  </head>
+
+  <!-- Apariencias -->
+  <body>
+    <main>
+      <!-- Barra superior: -->
+      <h1>Balearic Building</h1>
+      <nav>
+        <div>
+          <p>$$ <span id="juegoDinero"></span></p>
+        </div>
+        <div>
+          <p><span id="juegoNickname"></span>, <span id="juegoBadge"></span></p>
+        </div>
+      </nav>
+      <div id="imgPj"></div>
+      <hr />
+
+      <!-- Zona central: -->
+      <div id="eventoDinero"></div>
+      <div id="juegoTablero">
+        <canvas id="tablero"></canvas>
+      </div>
+
+      <!-- construcciones: -->
+      <div id="construcciones">
+        <div class="botonEdificio" id="xibiu">
+          <img src="images/edif_xibiu.png" alt="xibiu" />
+          <p>Xibiu</p>
+        </div>
+        <div class="botonEdificio" id="casa">
+          <img src="images/edif_casa.png" alt="casa" />
+          <p>Casa</p>
+        </div>
+        <div class="botonEdificio" id="xalet">
+          <img src="images/edif_xalet.png" alt="xalet" />
+          <p>Xalet</p>
+        </div>
+        <div class="botonEdificio" id="hotel">
+          <img src="images/edif_hotel.png" alt="hotel" />
+          <p>Hotel</p>
+        </div>
+      </div>
+
+      <!-- Barras inferiores: -->
+      <div>
+        <div id="juegoInferior">
+          <span
+            title="subornar!"
+            id="soborno"
+            class="far fa-money-bill-alt"
+          ></span>
+          <span title="moure!" id="traslado" class="fas fa-arrows-alt"></span>
+          <span title="demolir!" id="demolicion" class="fas fa-trash"></span>
+          <span
+            title="cancelar operació!"
+            id="cancelar"
+            class="fas fa-ban"
+          ></span>
+          <span title="sortir!" id="salir" class="fas fa-power-off"></span>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
