@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "YuseiMagic";
+  src: url("/resources/fonts/YuseiMagic-regular.ttf");
+}
+#signup input[type=submit], #signup fieldset label,
+#signup fieldset p, #signup fieldset {
+  font-weight: 900;
+  color: black;
+}
+
+#signup {
+  font-family: YuseiMagic;
+  max-width: 700px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+#signup fieldset {
+  margin-top: 15px;
+  color: #8e231b;
+  font-size: 1.5rem;
+}
+#signup fieldset div {
+  display: flex;
+  align-items: center;
+}
+#signup fieldset label,
+#signup fieldset p {
+  font-size: 1.2rem;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-top: 2%;
+}
+#signup fieldset p {
+  margin-top: 4%;
+}
+#signup fieldset input,
+#signup fieldset select {
+  margin-top: 2%;
+}
+#signup fieldset input:focus {
+  background-color: #8e661bab;
+}
+#signup fieldset input:not([type=radio]) {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 74%;
+}
+#signup input[type=submit] {
+  margin: 0 auto;
+  display: block;
+  margin-top: 4%;
+  text-transform: uppercase;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* Responsive design mobile */
+@media screen and (max-width: 799px) {
+  fieldset div {
+    flex-direction: column;
+  }
+}
+/* Responsive design mobile */
+@media screen and (min-width: 800px) {
+  fieldset div {
+    flex-direction: row;
+  }
+  fieldset:nth-child(2) > div, fieldset:last-of-type > div:last-of-type {
+    justify-content: space-between;
+  }
+}
+
+/*# sourceMappingURL=styles-form.css.map */
