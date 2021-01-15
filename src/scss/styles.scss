@@ -1,20 +1,8 @@
 // para compilar manualmente --> sass scss/styles.scss css/styles.css
 // para compilar automáticamente sass --watch src/scss/styles.scss:src/css/styles-form.css
 
-@font-face {
-  font-family: "YuseiMagic";
-  src: url("/resources/fonts/YuseiMagic-regular.ttf");
-}
-
-$error: red;
-$main-color: #8e231b;
-$font-mida: 1rem;
-$espai: 2%;
-
-%titulos {
-  font-weight: 900;
-  color: black;
-}
+@import "general";
+@import "header_footer";
 
 @mixin padding($std-padding) {
   padding-left: $std-padding * 2;
@@ -27,8 +15,36 @@ $espai: 2%;
   flex-direction: $direction;
 }
 
+%titulos {
+  font-weight: 900;
+  color: black;
+}
+
+%btn {
+  background-color: $main-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 0 auto;
+  display: block;
+  margin-top: $espai + 2%;
+  margin-bottom: $espai + 2%;
+  text-transform: uppercase;
+  @include padding(15px);
+
+  &:hover{
+    border: 2px solid $main-color;
+    background-color: white;
+    color: $main-color;
+  }
+}
+
+body {
+  margin: 0;
+}
+
 #signup {
-  font-family: YuseiMagic;
+  // display: none;
   max-width: 700px;
   box-sizing: border-box;
   margin: 0 auto;
@@ -38,6 +54,17 @@ $espai: 2%;
     color: $main-color;
     font-size: $font-mida + 0.5;
     @extend %titulos;
+
+    &:not(legend) {
+      font-family: YuseiMagic;
+    }
+
+    legend {
+      font-family: Corleone;
+      font-weight: 100;
+      font-size: $font-mida * 2;
+      letter-spacing: 2px;
+    }
 
     div {
       display: flex;
@@ -49,17 +76,17 @@ $espai: 2%;
       font-size: $font-mida + 0.2;
       padding-left: $espai;
       padding-right: $espai;
-      margin-top:$espai;
+      margin-top: $espai;
       @extend %titulos;
     }
 
     p {
-        margin-top:$espai+2%;
+      margin-top: $espai + 2%;
     }
 
     input,
     select {
-        margin-top:$espai;
+      margin-top: $espai;
     }
 
     input:focus {
@@ -73,12 +100,35 @@ $espai: 2%;
   }
 
   input[type="submit"] {
-    margin: 0 auto;
-    display: block;
-    margin-top:$espai+2%;
-    text-transform: uppercase;
-    @include padding(15px);
+    @extend %btn;
     @extend %titulos;
+  }
+}
+
+button {
+  @extend %btn;
+  @extend %titulos;
+}
+
+.grid-container {
+  display: grid;
+}
+
+#botonTop {
+  display: none; /* empieza siempre oculto */
+  position: fixed;
+  bottom: 3.3rem;
+  right: 0.3rem;
+  z-index: 99; /* así queda siempre superpuesto */
+  color: white;
+  background-color: #4d4d4d;
+  box-sizing: border-box;
+  font-size: 80%;
+  width: auto;
+  
+  &:hover {
+    color: white;
+    background-color: $main-color;
   }
 }
 
@@ -89,10 +139,25 @@ $espai: 2%;
       @include flex-div(column);
     }
   }
+
+  .grid-container {
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+  }
 }
 
-/* Responsive design mobile */
+/* Responsive design tablet + desktop */
 @media screen and (min-width: 800px) {
+
+  .grid-container {
+    grid-template-areas:
+      "header header header header"
+      "main main main main"
+      "footer footer footer footer";
+  }
+
   fieldset {
     div {
       @include flex-div(row);

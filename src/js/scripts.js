@@ -177,7 +177,7 @@ function start() {
 /**
  * Función que ejecuta el menu en móviles
  */
-function menuMobile() {
+export function menuMobile() {
   let link = document.getElementById("optionsMenu");
   let menu = document.getElementsByTagName("header")[0];
   let iconTanca = document.getElementsByClassName("fas fa-times")[0];
@@ -199,7 +199,7 @@ function menuMobile() {
  * Función para eliminar la clase active al elemento que la contenga
  * @param {a} element opción de menu
  */
-function removeActiveClass(element) {
+export function removeActiveClass(element) {
   //No utilizo classList.toggle porque si pincho en el link de una pag. donde estoy me quitara el estilo y no es lo que quiero
   if (element.classList.contains("active")) {
     element.classList.remove("active");
@@ -209,7 +209,7 @@ function removeActiveClass(element) {
 /**
  * Función para mostrar/ocultar el botón scroll to top:
  */
-function controlarBotonTop() {
+export function controlarBotonTop() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     // o porque depende del navegador: .body para safari, resto para demás
     botonTop.style.display = "block";

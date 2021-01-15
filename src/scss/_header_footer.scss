@@ -1,0 +1,205 @@
+/* MENU */
+header {
+  grid-area: header;
+  background-color: $main-color;
+  padding: 0.8rem;
+  position: relative;
+}
+/* FIN MENU */
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  padding: 1.35rem;
+  background-color: $main-color;
+  color: white;
+  box-sizing: border-box;
+
+  a {
+    font-family: YuseiMagic;
+    color: white;
+  }
+}
+
+nav {
+  a {
+    font-family: Open Sans, sans-serif;
+    color: white;
+    font-size: 1.25rem;
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 3px solid #4d4d4d;
+      padding-bottom: 2px;
+      color: #4d4d4d;
+    }
+
+    &:nth-child(6):hover > i.fa-envelope {
+      color: #4d4d4d;
+    }
+  }
+}
+
+.fas,
+.fab,
+.far {
+  margin-right: 8px;
+}
+
+.fa-github,
+.fa-envelope,
+.fa-facebook,
+.fa-twitter,
+.fa-instagram,
+a > i {
+  color: white;
+}
+
+a.fa-envelope {
+  padding-bottom: 5px;
+}
+
+/* icono del arrow up centrado */
+i.fa-arrow-up {
+  display: contents;
+}
+
+.active {
+  border-bottom: 3px solid white;
+  padding-bottom: 2px;
+  font-weight: 800;
+}
+
+/* responsive design tablet + desktop */
+@media screen and (min-width: 800px) {
+
+  /* MENU DESKTOP */
+  header {
+    display: flex;
+    > a {
+      > img {
+        margin-bottom: -0.5rem;
+        box-sizing: border-box;
+        height: 70px;
+      }
+    }
+  }
+
+  nav {
+    align-self: center;
+    position: absolute;
+    right: 15%;
+    
+    > div:last-of-type,
+    > div:last-of-type > a:nth-last-child(2) {
+      display: inline-flex;
+    }
+    > div > a:last-of-type {
+      display: none;
+    }
+    > div > a:not(:nth-last-of-type(2)) {
+      margin-right: 2.5%;
+      margin-left: 2.5%;
+    }
+    > div:last-of-type > a:nth-last-child(2) i {
+      align-self: center;
+      padding-left: 5%;
+    }
+  }
+  /* END MENU DESKTOP */
+
+  footer {
+    display: flex;
+    text-align: right;
+    height: 100%;
+    align-items: center;
+    box-sizing: border-box;
+  
+
+    > div:last-of-type {
+      right: 10px;
+      position: absolute;
+      height: 50px;
+    }
+
+    i {
+      margin-left: 15px;
+
+      &:hover {
+        color: #4d4d4d;
+      }
+    }
+  }
+
+  .icon {
+    display: none;
+  }
+}
+
+/* Responsive design mobile */
+@media screen and (max-width: 799px) {
+  /* Diseño MENU MOVIL */
+
+  header {
+    > div:first-of-type {
+      width: fit-content;
+      float: right;
+    }
+
+    > a {
+      > img {
+        width: 100px;
+      }
+    }
+  }
+
+  nav {
+    > div {
+    display: none;
+    }
+
+    a {
+      display: block;
+      margin-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    a:not(:last-of-type) {
+      border-bottom: 1px solid white;
+    }
+    a:nth-last-of-type(2) {
+      display: none;
+    }
+  }
+
+  #optionsMenu {
+    width: 100%;
+  }
+
+  #menu a.icon {
+    display: block;
+    position: absolute;
+    right: 20px;
+  }
+
+  .active {
+    color: #4d4d4d;
+    padding-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+
+  i.fas.fa-times {
+    display: none;
+  }
+  /* FIN MENU MÓVIL */
+
+  footer {
+    text-align: center;
+    > div {
+      margin-top: 25px;
+    }
+  }
+}
