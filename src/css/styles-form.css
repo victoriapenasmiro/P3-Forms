@@ -188,13 +188,13 @@ nav > div:last-of-type > a:nth-last-child(2) {
     margin-top: 25px;
   }
 }
-button, #signup input[type=submit], #signup fieldset label,
+button, #signup input[type=button], #signup fieldset label,
 #signup fieldset p, #signup fieldset {
   font-weight: 900;
   color: black;
 }
 
-button, #signup input[type=submit] {
+button, #signup input[type=button] {
   background-color: #8e231b;
   color: white;
   border: none;
@@ -209,7 +209,7 @@ button, #signup input[type=submit] {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-button:hover, #signup input[type=submit]:hover {
+button:hover, #signup input[type=button]:hover {
   border: 2px solid #8e231b;
   background-color: white;
   color: #8e231b;

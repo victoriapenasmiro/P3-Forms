@@ -602,3 +602,37 @@ En definitiva, hemos trabajado en equipo intentando utilizar el mismo estilo y f
 * [Versión 1.0](https://github.com/victoriapenasmiro/BalearicBuild_2021/releases/tag/v1.0): 16 de noviembre de 2021
 * [Versión 2.0](https://github.com/victoriapenasmiro/BalearicBuild_2021/releases/tag/v2.0): 28 de noviembre de 2021
 * [Versión 3.0](https://github.com/victoriapenasmiro/BalearicBuild_2021/releases/tag/v3.0): 10 de diciembre de 2021
+
+## PC3 + P3
+
+### Herramientas utilizadas:
+
+* SCASS
+* Node
+* Mocha
+* Accessibilitat WCAG 2.1
+
+### reutilización de funciones:
+
+* He reutilizado algunas funciones de scripts.js, por lo que he modificado el fichero para poder importarlas.
+
+### fuentes utilizadas:
+
+He cargado una nueva fuente a local y, además he reutilizado las otras que ya se emplearos en la práctica de BalearicBuild para mantener los estilos y la coherencia del diseño:
+
+* Corleone - instalada en local.
+* OpenSans - imortada desde la API de Google.
+
+### Problemas encontrados:
+
+#### Input Submit - recarga la página:
+En el formulario de registro tenía configurado un input type submit, mediante el cual al clicar, realizaba la validación de los campo del formulario.
+
+Sin embargo, los cambios se aplicaban por un segundo y luego desaparecían. Recargaba la página al momento. Debido a esto, he tenido que modificar el *type* del input a *button*.
+
+#### nombre elementos DOM:
+Necesitaba recuperar el tipo de elemento de un nodo del DOM, pero no conseguía recuperar el valor correctamente.
+
+A través de un artículo de StackOverflow descubrí que siempre que se utilice la función *nodeName* debe realizarse con el nombre de elemento en mayúsculas y sin los "< >".
+
+

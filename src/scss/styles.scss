@@ -99,7 +99,7 @@ body {
     }
   }
 
-  input[type="submit"] {
+  input[type="button"] {
     @extend %btn;
     @extend %titulos;
   }
