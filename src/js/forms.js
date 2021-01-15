@@ -12,6 +12,21 @@ $(document).ready(() => {
   $("header").load("header.html", iniciar);
 });
 
+//variable para controlar que el form es válido
+var isValid;
+/**
+ * Función para mostrar u ocultar el pw
+ */
+function togglePw() {
+  const PW1 = document.querySelector("#pw");
+  // if (event.button == 2) { //TODO onmousedown con derecho no funciona bien
+  // toggle the type attribute
+  let type = pw.getAttribute("type") === "password" ? "text" : "password";
+  PW1.setAttribute("type", type);
+  // toggle the eye slash icon
+  this.classList.toggle("fa-eye-slash");
+}
+
 function iniciar() {
   /**** SCROLL TO TOP ****/
   var botonTop = document.getElementById("botonTop");
@@ -59,7 +74,23 @@ function iniciar() {
     .addEventListener("click", menuMobile);
 
   document.getElementById("submit").addEventListener("click", validarForm);
-  document.getElementsById("username").addEventListener("focusout",validarUser);
+
+  document
+    .getElementById("username")
+    .addEventListener("focusout", validarUser);
+
+  document
+    .getElementsByClassName("togglePassword")[0]
+    .addEventListener("mousedown", togglePw);
+  document
+    .getElementsByClassName("togglePassword")[0]
+    .addEventListener("mouseup", togglePw);
+  document
+    .getElementsByClassName("togglePassword")[1]
+    .addEventListener("mousedown", togglePw);
+  document
+    .getElementsByClassName("togglePassword")[1]
+    .addEventListener("mouseup", togglePw);
 }
 
 /**
@@ -75,29 +106,36 @@ function validarForm() {
   warn.innerHTML = "Nom invàlid o Longitud màxima superada.";
   let warn2 = warn.cloneNode(true);
 
-  validarNombre(name,firstDiv,warn, 0);
-  validarNombre(surname,firstDiv,warn2, 1);
-  
-  
-  //todo validar username
-
+  isValid = validarNombre(name, firstDiv, warn, 0);
+  isValid = validarNombre(surname, firstDiv, warn2, 1);
+  isValid = validarUser();
 }
 
-function validarNombre(str,firstDiv,warn,pos){
+function validarNombre(str, firstDiv, warn, pos) {
   if (!nomLlinatge.test(str.value)) {
     if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName != "P") {
-      firstDiv.getElementsByTagName("div")[pos].insertAdjacentElement("afterend", warn);
+      firstDiv
+        .getElementsByTagName("div")
+        [pos].insertAdjacentElement("afterend", warn);
     }
+    return false;
   } else {
     if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName == "P") {
       firstDiv.getElementsByTagName("div")[pos].nextSibling.remove();
     }
+    return true;
   }
 }
 
-function validarUser(){
-  let user = document.getElementById("username").value;
-  if(!username.test())
+function validarUser() {
+  let user = document.getElementById("username");
+  if (!username.test(user.value)) {
+    alert("nombre de usuario incorrecto. el formato debe ser el siguiente: u123456X");
+    user.style.backgroundColor = "red";
+    return false;
+  } else {
+    return true;
+  }
 }
 
 function openList() {

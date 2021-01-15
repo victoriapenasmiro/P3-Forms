@@ -77,9 +77,15 @@
           </div>
           <div>
               <label for="pw">Password:</label>
-              <input type="password" id="pw" name="pw" />
+              <div style="flex-direction: row;">
+                <input type="password" id="pw" name="pw" placeholder="password"/>
+                <i class="far fa-eye togglePassword"></i>
+              </div>
               <label for="pw2">password2:</label>
-              <input type="password" id="pw2" name="pw2" placeholder="please, repeat password"/>
+              <div style="flex-direction: row;">
+                <input type="password" id="pw2" name="pw2" placeholder="repeat password"/>
+                <i class="far fa-eye togglePassword"></i>
+              </div>
           </div>
         </fieldset>
           <input type="button" id="submit" value="Submit" />
