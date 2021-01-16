@@ -14,18 +14,6 @@ $(document).ready(() => {
 
 //variable para controlar que el form es válido
 var isValid;
-/**
- * Función para mostrar u ocultar el pw
- */
-function togglePw() {
-  const PW1 = document.querySelector("#pw");
-  // if (event.button == 2) { //TODO onmousedown con derecho no funciona bien
-  // toggle the type attribute
-  let type = pw.getAttribute("type") === "password" ? "text" : "password";
-  PW1.setAttribute("type", type);
-  // toggle the eye slash icon
-  this.classList.toggle("fa-eye-slash");
-}
 
 function iniciar() {
   /**** SCROLL TO TOP ****/
@@ -81,16 +69,16 @@ function iniciar() {
 
   document
     .getElementsByClassName("togglePassword")[0]
-    .addEventListener("mousedown", togglePw);
+    .addEventListener("mousedown", function() { togglePw(1); });
   document
     .getElementsByClassName("togglePassword")[0]
-    .addEventListener("mouseup", togglePw);
+    .addEventListener("mouseup", function() { togglePw(1); });
   document
     .getElementsByClassName("togglePassword")[1]
-    .addEventListener("mousedown", togglePw);
+    .addEventListener("mousedown", function() { togglePw(2); });
   document
     .getElementsByClassName("togglePassword")[1]
-    .addEventListener("mouseup", togglePw);
+    .addEventListener("mouseup", function() { togglePw(2); });
 }
 
 /**
@@ -106,13 +94,13 @@ function validarForm() {
   warn.innerHTML = "Nom invàlid o Longitud màxima superada.";
   let warn2 = warn.cloneNode(true);
 
-  isValid = validarNombre(name, firstDiv, warn, 0);
-  isValid = validarNombre(surname, firstDiv, warn2, 1);
+  isValid = validarNombre(name, firstDiv, warn, 0, nomLlinatge);
+  isValid = validarNombre(surname, firstDiv, warn2, 1, nomLlinatge);
   isValid = validarUser();
 }
 
-function validarNombre(str, firstDiv, warn, pos) {
-  if (!nomLlinatge.test(str.value)) {
+function validarNombre(str, firstDiv, warn, pos, expresion) {
+  if (!expresion.test(str.value)) {
     if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName != "P") {
       firstDiv
         .getElementsByTagName("div")
@@ -136,6 +124,36 @@ function validarUser() {
   } else {
     return true;
   }
+}
+
+function validarPassword(){
+  const PW1 = document.querySelector("#pw1");
+  const PW2 = document.querySelector("#pw2");
+  let firstDiv = document.getElementById("signup");
+
+  //comprueba la coincidencia de los passwords
+  if(PW1.value == PW2.value && PW1.value != ""){
+    let warn = document.createElement("p");
+    warn.style.color = "red";
+    warn.style.fontSize = "12px";
+    warn.innerHTML = "Las contraseñas no coinciden.";
+
+    isValid = validarNombre(PW2, firstDiv, warn, pos , expresion);  //TODO validar que cumple formatos según accesibilidad, actualizar pos y expression
+
+  }
+}
+
+/**
+ * Función para mostrar u ocultar el pw
+ */
+function togglePw(num) {
+  const PW = document.querySelector("#pw"+num);
+  // if (event.button == 2) { //TODO onmousedown con derecho no funciona bien
+  // toggle the type attribute
+  let type = PW.getAttribute("type") === "password" ? "text" : "password";
+  PW.setAttribute("type", type);
+  // toggle the eye slash icon
+  this.classList.toggle("fa-eye-slash");
 }
 
 function openList() {

@@ -611,6 +611,7 @@ En definitiva, hemos trabajado en equipo intentando utilizar el mismo estilo y f
 * Node
 * Mocha
 * Accessibilitat WCAG 2.1
+* [Regexr](https://regexr.com/)
 
 ### reutilización de funciones:
 
@@ -623,16 +624,25 @@ He cargado una nueva fuente a local y, además he reutilizado las otras que ya s
 * Corleone - instalada en local.
 * OpenSans - imortada desde la API de Google.
 
+### Fases de desarrollo:
+
+
+
 ### Problemas encontrados:
 
 #### Input Submit - recarga la página:
+
 En el formulario de registro tenía configurado un input type submit, mediante el cual al clicar, realizaba la validación de los campo del formulario.
 
 Sin embargo, los cambios se aplicaban por un segundo y luego desaparecían. Recargaba la página al momento. Debido a esto, he tenido que modificar el *type* del input a *button*.
 
 #### nombre elementos DOM:
+
 Necesitaba recuperar el tipo de elemento de un nodo del DOM, pero no conseguía recuperar el valor correctamente.
 
 A través de un artículo de StackOverflow descubrí que siempre que se utilice la función *nodeName* debe realizarse con el nombre de elemento en mayúsculas y sin los "< >".
+
+### Releases 📅 :
+* [version]()//TODO
 
 
