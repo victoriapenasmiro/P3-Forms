@@ -626,7 +626,16 @@ He cargado una nueva fuente a local y, además he reutilizado las otras que ya s
 
 ### Fases de desarrollo:
 
+Se han seguido las normas de accesibilidad en la creación de los formularios:
 
+* Uso de etiquetas *label* para relacionar los *input*
+* Uso de etiquetas *fieldset* y *legend*
+* Uso de etiquetas *placeholder* para ayudar al usuario.
+* Se realiza una validación de los campos mediante js y se avisa al usuario de los errores.
+* Se ha implementado atributos de accesibilidad, según [esta guía](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)://TODO
+  - *aria-labelledby*
+  - *role*
+  - *aria-required*
 
 ### Problemas encontrados:
 

@@ -188,8 +188,8 @@ nav > div:last-of-type > a:nth-last-child(2) {
     margin-top: 25px;
   }
 }
-button, #signup input[type=button], #signup fieldset label,
-#signup fieldset p, #signup fieldset {
+button, #signup input[type=button], #signup > fieldset label,
+#signup > fieldset p, #signup > fieldset {
   font-weight: 900;
   color: black;
 }
@@ -224,50 +224,54 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
 }
-#signup fieldset {
+#signup > fieldset {
   margin-top: 15px;
   color: #8e231b;
   font-size: 1.5rem;
 }
-#signup fieldset:not(legend) {
+#signup > fieldset:not(legend) {
   font-family: YuseiMagic;
 }
-#signup fieldset legend {
+#signup > fieldset > legend {
   font-family: Corleone;
   font-weight: 100;
   font-size: 2rem;
   letter-spacing: 2px;
 }
-#signup fieldset div {
+#signup > fieldset div {
   display: flex;
   align-items: center;
+  width: 100%;
 }
-#signup fieldset label,
-#signup fieldset p {
+#signup > fieldset label,
+#signup > fieldset p {
   font-size: 1.2rem;
   padding-left: 2%;
   margin-top: 2%;
 }
-#signup fieldset p {
+#signup > fieldset p {
   margin-top: 4%;
 }
-#signup fieldset input {
+#signup > fieldset input {
   margin-top: 2%;
 }
-#signup fieldset input:focus {
+#signup > fieldset input:focus {
   background-color: #8e661bab;
 }
-#signup fieldset input:not([type=radio]) {
+#signup > fieldset input:not([type=radio]) {
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
   width: 76%;
 }
-#signup fieldset input[type=password] {
+#signup > fieldset input[type=password] {
   width: 100%;
 }
-#signup fieldset select {
+#signup > fieldset input[type=radio]:last-of-type {
+  margin-left: 5%;
+}
+#signup > fieldset select {
   margin-top: 2%;
   height: 30px;
 }
@@ -322,9 +326,6 @@ body {
 
   fieldset div {
     flex-direction: row;
-  }
-  fieldset:nth-child(2) > div, fieldset:last-of-type > div:last-of-type {
-    justify-content: space-between;
   }
 }
 

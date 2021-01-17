@@ -49,7 +49,7 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
 
-  fieldset {
+  > fieldset {
     margin-top: 15px;
     color: $main-color;
     font-size: $font-mida + 0.5;
@@ -59,7 +59,7 @@ body {
       font-family: YuseiMagic;
     }
 
-    legend {
+    > legend {
       font-family: Corleone;
       font-weight: 100;
       font-size: $font-mida * 2;
@@ -69,6 +69,7 @@ body {
     div {
       display: flex;
       align-items: center;
+      width: 100%;
     }
 
     label,
@@ -99,6 +100,10 @@ body {
       &[type="password"] {
         width: 100%;
       }
+
+      &[type="radio"]:last-of-type {
+        margin-left: $espai + 3%;
+      }
     }
     
     select {
@@ -111,9 +116,7 @@ body {
     @extend %btn;
     @extend %titulos;
   }
-
 }
-
 
 
 button {
@@ -184,9 +187,9 @@ button {
       @include flex-div(row);
     }
 
-    &:nth-child(2) > div,
-    &:last-of-type > div:last-of-type {
-      justify-content: space-between;
-    }
+    // &:nth-child(2) > div,
+    // &:last-of-type > div:last-of-type {
+    //   justify-content: space-between;
+    // }
   }
 }

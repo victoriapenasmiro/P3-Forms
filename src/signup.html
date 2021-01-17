@@ -30,60 +30,66 @@
     <!-- Button to open the modal -->
     <main>
       <button>Sign Up</button>
-      <form action="" id="signup" novalidate>
+      <form id="signup" novalidate>
         <fieldset>
           <legend>Personal Data:</legend>
           <div>
               <label for="fname">First name:</label>
-              <input type="text" id="fname" name="fname" placeholder="min 20 characters, max 30 characters"/>
+              <input type="text" id="fname" name="fname" aria-required="true" placeholder="min 20 characters, max 30 characters"/>
           </div>
           <div>
               <label for="lname">Last name:</label>
-              <input type="text" id="lname" name="lname" placeholder="min 20 characters, max 30 characters"/>
+              <input type="text" id="lname" name="lname" aria-required="true" placeholder="min 20 characters, max 30 characters"/>
           </div>
           <div>
               <label for="country">Country:</label>
-              <select id="country" name="country" />
+              <select id="country" name="country" aria-required="true">
                   <option value="1">1</option>
                   <option value="2">2</option>
               </select>
           </div>
-          <div>
-              <p>Age:</p>
-              <input type="radio" id="-18" name="age" />
-              <label for="-18">I’m under 18</label>
-              <input type="radio" id="18" name="age" />
-              <label for="18">I’m 18</label>
-          </div>
+          <fieldset>
+                <legend>Age:</legend>
+                <div>
+                  <input type="radio" id="-18" name="age" aria-required="true" />
+                  <label for="-18">I’m under 18</label>
+                  <input type="radio" id="18" name="age" aria-required="true"/>
+                  <label for="18">I’m 18</label>
+                </div>
+          </fieldset>
         </fieldset>
         <fieldset>
           <legend>Contact Data:</legend>
           <div>
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" />
-              <label for="email2">Email2:</label>
-              <input type="email" id="email2" name="email" />
+              <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" aria-required="true" placeholder="Solo se admite: .es, .com o .net" />
+              </div>
+              <div>
+                <label for="email2">Email2:</label>
+                <input type="email" id="email2" name="email" aria-required="true" placeholder="Repite tu email" />
+              </div>
           </div>
           <div>
               <label for="tlf">Phone Num:</label>
-              <input type="number" id="tlf" name="tlf" placeholder="699-999999"/>
+              <input type="text" id="tlf" name="tlf" aria-required="true" placeholder="699-999999"/>
           </div>
         </fieldset>
         <fieldset>
           <legend>Credentials:</legend>
           <div>
               <label for="username">Username:</label>
-              <input type="text" id="username" name="username" placeholder="example: u123456X"/>
+              <input type="text" id="username" name="username" aria-required="true" placeholder="example: u123456X"/>
           </div>
           <div>
-              <label for="pw">Password:</label>
+              <label for="pw1">Password:</label>
               <div style="flex-direction: row;">
-                <input type="password" id="pw1" name="pw" placeholder="password"/>
+                <input type="password" id="pw1" name="pw" aria-required="true" placeholder="password"/>
                 <i class="far fa-eye togglePassword"></i>
               </div>
-              <label for="pw2">password2:</label>
+              <label for="pw2">Password2:</label>
               <div style="flex-direction: row;">
-                <input type="password" id="pw2" name="pw2" placeholder="repeat password"/>
+                <input type="password" id="pw2" name="pw2" aria-required="true" placeholder="repeat password"/>
                 <i class="far fa-eye togglePassword"></i>
               </div>
           </div>
