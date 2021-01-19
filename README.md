@@ -681,7 +681,10 @@ En cualquier caso, debido a la complejidad de estos elementos, y al cambiar los 
 
 ### Validaciones con MOCHA:
 
-Las funciones que se han utilizado para las validaciones con MOCHA están en el fichero __validacions_forms.mjs__
+* Las funciones que se han utilizado para las validaciones con MOCHA están en el fichero __validacions_forms.mjs__
+
+* Se han pasado los test de validación correctamente.
+![imagen tests mocha](/src/images/tests-mocha.png999-000000)
 
 ### Releases 📅 :
 * [version]()//TODO
