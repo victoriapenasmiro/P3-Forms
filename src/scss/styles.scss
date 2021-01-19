@@ -55,6 +55,12 @@ body {
     font-size: $font-mida + 0.5;
     @extend %titulos;
 
+    &:last-of-type {
+      > p {
+        font-size: small;
+      }
+    }
+
     &:not(legend) {
       font-family: YuseiMagic;
     }
@@ -159,9 +165,9 @@ button {
     fieldset {
       input {
         width: 80%;
-        
+
         &[type="radio"]:last-of-type {
-          margin-top: 25px!important;
+          margin-top: 25px !important;
         }
       }
 

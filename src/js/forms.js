@@ -1,9 +1,10 @@
 import {
-  nomLlinatge,
-  username,
-  telefono,
-  email,
-} from "./modules/validacions_forms.js"; //TODO
+  testNombre,
+  testUser,
+  testTlf,
+  testEmail,
+  testPw,
+} from "./modules/validacions_forms.mjs";
 
 import { removeActiveClass, controlarBotonTop, menuMobile } from "./scripts.js";
 
@@ -11,10 +12,6 @@ $(document).ready(() => {
   $("footer").load("footer.html");
   $("header").load("header.html", iniciar);
 });
-
-//variable para controlar que el form es válido
-var isValid;
-//TODO crear objeto formulario
 
 function iniciar() {
   /**** SCROLL TO TOP ****/
@@ -63,28 +60,37 @@ function iniciar() {
     .addEventListener("click", menuMobile);
 
   document.getElementById("submit").addEventListener("click", validarForm);
+  document.getElementById("fname").addEventListener("focusout", function () {
+    validarNombre("fname",0);
+  });
+  document.getElementById("lname").addEventListener("focusout", function () {
+    validarNombre("lname",1)});
   document.getElementById("tlf").addEventListener("focusout", validarTlf);
+  document.getElementById("email").addEventListener("focusout", validarEmail);
+  document.getElementById("email2").addEventListener("focusout", validarEmail);
   document.getElementById("username").addEventListener("focusout", validarUser);
+  document.getElementById("pw1").addEventListener("focusout", validarPassword);
+  document.getElementById("pw2").addEventListener("focusout", validarPassword);
 
   document
     .getElementsByClassName("togglePassword")[0]
     .addEventListener("mousedown", function () {
-      togglePw(1);
+      togglePw(this,1);
     });
   document
     .getElementsByClassName("togglePassword")[0]
     .addEventListener("mouseup", function () {
-      togglePw(1);
+      togglePw(this,1);
     });
   document
     .getElementsByClassName("togglePassword")[1]
     .addEventListener("mousedown", function () {
-      togglePw(2);
+      togglePw(this,2);
     });
   document
     .getElementsByClassName("togglePassword")[1]
     .addEventListener("mouseup", function () {
-      togglePw(2);
+      togglePw(this,2);
     });
 }
 
@@ -92,8 +98,10 @@ function iniciar() {
  * Función para validar los campos del formulario de registro
  */
 function validarForm() {
+  let isValid;
+
   //todo validar todos campos al perder el focus
-  isValid = validarNombre("fname", 0);//evitar globales
+  isValid = validarNombre("fname", 0); //evitar globales
   isValid = validarNombre("lname", 1);
   isValid = validarTlf();
   isValid = validarEmail();
@@ -107,7 +115,6 @@ function validarForm() {
   //     }
   //   }
   // }
-  
 
   if (isValid) {
     let peticion = new Object();
@@ -127,16 +134,15 @@ function validarForm() {
 function validarNombre(str, pos) {
   let name = document.getElementById(str);
   let warn = "";
+  let isValid;
   if (name == "") {
     warn = "Por favor, indica un valor";
     name.style.borderColor = "red";
-    name.style.color = "white";
     errorValidacion(warn, pos);
     isValid = false;
-  } else if (!nomLlinatge.test(name.value)) {//TODO import función validación
+  } else if (!testNombre(name.value)) {
     warn = "Dato inválido. Debe ser min 20 letras y máximo 30.";
     name.style.borderColor = "red";
-    name.style.color = "white";
     errorValidacion(warn, pos);
     isValid = false;
   } else {
@@ -154,17 +160,16 @@ function validarNombre(str, pos) {
 function validarTlf() {
   let phone = document.getElementById("tlf");
   let warn = "";
+  let isValid;
   if (phone.value == "") {
     warn = "Por favor, indica un teléfono";
     errorValidacion(warn, 7);
     phone.style.borderColor = "red";
-    phone.style.color = "white";
-  } else if (!telefono.test(phone.value)) {
+  } else if (!testTlf(phone.value)) {
     warn =
       "Teléfono no válido. El formato debe ser el siguiente: 699-999999, debe empezar por 6 o 9";
     errorValidacion(warn, 7);
     phone.style.borderColor = "red";
-    phone.style.color = "white";
     isValid = false;
   } else {
     phone.style.borderColor = "#4d4d4d";
@@ -182,6 +187,7 @@ function validarEmail() {
   const EMAIL1 = document.querySelector("#email");
   const EMAIL2 = document.querySelector("#email2");
   let error = "";
+  let isValid;
 
   //comprueba la coincidencia de los passwords
   if (EMAIL1.value != "") {
@@ -189,13 +195,11 @@ function validarEmail() {
       error = "Los emails introducidos no coinciden.";
       errorValidacion(error, 4);
       EMAIL1.style.borderColor = "red";
-      EMAIL1.style.color = "white";
       isValid = false;
-    } else if (!email.test(EMAIL1.value)) {
+    } else if (!testEmail(EMAIL1.value)) {
       error = "Formato incorrecto.";
       errorValidacion(error, 4);
       EMAIL1.style.borderColor = "red";
-      EMAIL1.style.color = "white";
       isValid = false;
     } else {
       eliminarWarn(4);
@@ -209,13 +213,11 @@ function validarEmail() {
     error = "Por favor, introduce un email";
     errorValidacion(error, 4);
     EMAIL1.style.borderColor = "red";
-    EMAIL1.style.color = "white";
     isValid = false;
   } else if (EMAIL2.value == "") {
     error = "Por favor, repite el email";
     errorValidacion(error, 4);
     EMAIL2.style.borderColor = "red";
-    EMAIL2.style.color = "white";
     isValid = false;
   } else {
     error = "Por favor, introduce un email.";
@@ -230,17 +232,18 @@ function validarEmail() {
  */
 function validarUser() {
   let user = document.getElementById("username");
-  if (!username.test(user.value)) {
-    alert(
-      "nombre de usuario incorrecto. el formato debe ser el siguiente: u123456X"
-    );
-    //TODO pintar p bajo el div
+  let error = "";
+  let isValid;
+  if (!testUser(user.value)) {
+    error =
+      "Nombre de usuario incorrecto. El formato debe ser el siguiente: u123456X";
+    errorValidacion(error, 8);
     user.style.borderColor = "red";
-    user.style.color = "white";
     isValid = false;
   } else {
     user.style.borderColor = "#4d4d4d";
     user.style.color = "#4d4d4d";
+    eliminarWarn(8);
     isValid = true;
   }
   return isValid;
@@ -252,18 +255,17 @@ function validarUser() {
 function validarPassword() {
   const PW1 = document.querySelector("#pw1");
   const PW2 = document.querySelector("#pw2");
+  let isValid;
   let warn = "";
 
   if (PW1.value == "") {
     warn = "Por favor, indica una contraseña";
     PW1.style.borderColor = "red";
-    PW1.style.color = "white";
     errorValidacion(warn, 9);
     isValid = false;
   } else if (PW2.value == "") {
     warn = "Por favor, repite la contraseña";
     PW2.style.borderColor = "red";
-    PW2.style.color = "white";
     errorValidacion(warn, 9);
     isValid = false;
 
@@ -272,9 +274,10 @@ function validarPassword() {
     warn = "Las contraseñas no coinciden.";
     errorValidacion(warn, 9);
     isValid = false;
-  } else if (1 == 1) {
-    //corregir
-    //todo validar expresionregular
+  } else if (!testPw(PW1.value)) {
+    warn = "El formato de contraseña no es correcto.";
+    errorValidacion(warn, 9);
+    isValid = false;
   } else {
     eliminarWarn(9);
     PW1.style.borderColor = "#4d4d4d";
@@ -290,7 +293,7 @@ function validarPassword() {
 /**
  * Función para mostrar u ocultar el pw con el click izquierdo del ratón
  */
-function togglePw(num) {
+function togglePw(element,num) {
   const PW = document.querySelector("#pw" + num);
   if (event.button == 0) {
     //solo ejecutar para click izquierdo
@@ -298,7 +301,7 @@ function togglePw(num) {
     let type = PW.getAttribute("type") === "password" ? "text" : "password";
     PW.setAttribute("type", type);
     // toggle the eye slash icon
-    this.classList.toggle("fa-eye-slash");
+    element.classList.toggle("fa-eye-slash");
   }
 }
 

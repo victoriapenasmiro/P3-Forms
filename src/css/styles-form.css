@@ -229,6 +229,9 @@ body {
   color: #8e231b;
   font-size: 1.5rem;
 }
+#signup > fieldset:last-of-type > p {
+  font-size: small;
+}
 #signup > fieldset:not(legend) {
   font-family: YuseiMagic;
 }

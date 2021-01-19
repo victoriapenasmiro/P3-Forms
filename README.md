@@ -666,6 +666,9 @@ Necesitaba recuperar el tipo de elemento de un nodo del DOM, pero no conseguía 
 
 A través de un artículo de StackOverflow descubrí que siempre que se utilice la función *nodeName* debe realizarse con el nombre de elemento en mayúsculas y sin los "< >".
 
+#### Expresiones regulares - accentos:
+Para los campos nombre y apellido, quería que también se considerase válido el uso de letras acentuadas. Encontré la expresión que se debeía utilizar en [StackOverflow](https://stackoverflow.com/questions/20690499/concrete-javascript-regex-for-accented-characters-diacritics).
+
 #### Validación password mediante expresión regulares:
 
 Inicialmente intenté realizar la validación del pattern de la contraseña con expresiones regulares, pero se dificultaba bastante porqué es necesario utilizar los elementos de *possitive lookahead* y *negative lookahead*. He estado investigando estos elementos en los siguientes foros:
@@ -674,6 +677,11 @@ Inicialmente intenté realizar la validación del pattern de la contraseña con 
 [https://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1](https://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1)
 
 En cualquier caso, debido a la complejidad de estos elementos, y al cambiar los requisitos de la práctica acerca de realizar este punto, finalmente la validación se ha combinado con js.
+
+
+### Validaciones con MOCHA:
+
+Las funciones que se han utilizado para las validaciones con MOCHA están en el fichero __validacions_forms.mjs__
 
 ### Releases 📅 :
 * [version]()//TODO
