@@ -263,10 +263,6 @@ body {
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
-  width: 76%;
-}
-#signup > fieldset input[type=password] {
-  width: 100%;
 }
 #signup > fieldset input[type=radio]:last-of-type {
   margin-left: 5%;
@@ -310,7 +306,17 @@ body {
 
 /* Responsive design mobile */
 @media screen and (max-width: 799px) {
-  fieldset div {
+  #signup {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  #signup fieldset input {
+    width: 80%;
+  }
+  #signup fieldset input[type=radio]:last-of-type {
+    margin-top: 25px !important;
+  }
+  #signup fieldset div {
     flex-direction: column;
   }
 
@@ -326,6 +332,13 @@ body {
 
   fieldset div {
     flex-direction: row;
+  }
+  fieldset div input:not([type=radio]) {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
   }
 }
 

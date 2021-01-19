@@ -14,6 +14,7 @@ $(document).ready(() => {
 
 //variable para controlar que el form es válido
 var isValid;
+//TODO crear objeto formulario
 
 function iniciar() {
   /**** SCROLL TO TOP ****/
@@ -62,9 +63,7 @@ function iniciar() {
     .addEventListener("click", menuMobile);
 
   document.getElementById("submit").addEventListener("click", validarForm);
-
   document.getElementById("tlf").addEventListener("focusout", validarTlf);
-
   document.getElementById("username").addEventListener("focusout", validarUser);
 
   document
@@ -93,23 +92,24 @@ function iniciar() {
  * Función para validar los campos del formulario de registro
  */
 function validarForm() {
-  let name = document.getElementById("fname");
-  let surname = document.getElementById("lname");
-  let firstDiv = document.getElementById("signup");
-  let warn = document.createElement("p");
-  warn.style.color = "red";
-  warn.style.fontSize = "12px";
-  warn.innerHTML = "Nom invàlid o Longitud màxima superada.";
-  let warn2 = warn.cloneNode(true);
-
-  isValid = validarNombre(name, firstDiv, warn, 0, nomLlinatge);
-  isValid = validarNombre(surname, firstDiv, warn2, 1, nomLlinatge);
+  //todo validar todos campos al perder el focus
+  isValid = validarNombre("fname", 0);//evitar globales
+  isValid = validarNombre("lname", 1);
   isValid = validarTlf();
   isValid = validarEmail();
   isValid = validarUser();
   isValid = validarPassword();
 
-  if(isValid){
+  // if (validarNombre("fname", 0)) {
+  //   if(validarNombre("lname", 1)) {
+  //     if (validarTlf()) {
+
+  //     }
+  //   }
+  // }
+  
+
+  if (isValid) {
     let peticion = new Object();
     peticion.name = document.getElementById("fname").value;
     peticion.surname = document.getElementById("lname").value;
@@ -119,20 +119,33 @@ function validarForm() {
   }
 }
 
-function validarNombre(str, firstDiv, warn, pos, expresion) {
-  if (!expresion.test(str.value)) {
-    if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName != "P") {
-      firstDiv
-        .getElementsByTagName("div")
-        [pos].insertAdjacentElement("afterend", warn);
-    }
-    return false;
+/**
+ * Función para validar los campos nombre y apellido
+ * @param {String} str id del input
+ * @param {int} pos posicion del input dentro del DOM
+ */
+function validarNombre(str, pos) {
+  let name = document.getElementById(str);
+  let warn = "";
+  if (name == "") {
+    warn = "Por favor, indica un valor";
+    name.style.borderColor = "red";
+    name.style.color = "white";
+    errorValidacion(warn, pos);
+    isValid = false;
+  } else if (!nomLlinatge.test(name.value)) {//TODO import función validación
+    warn = "Dato inválido. Debe ser min 20 letras y máximo 30.";
+    name.style.borderColor = "red";
+    name.style.color = "white";
+    errorValidacion(warn, pos);
+    isValid = false;
   } else {
-    if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName == "P") {
-      firstDiv.getElementsByTagName("div")[pos].nextSibling.remove();
-    }
-    return true;
+    eliminarWarn(pos);
+    name.style.borderColor = "#4d4d4d";
+    name.style.color = "#4d4d4d";
+    isValid = true;
   }
+  return isValid;
 }
 
 /**
@@ -140,17 +153,26 @@ function validarNombre(str, firstDiv, warn, pos, expresion) {
  */
 function validarTlf() {
   let phone = document.getElementById("tlf");
-  if (phone.value == ""){
-    alert("Por favor, indica un teléfono");
-    phone.style.backgroundColor = "red";
+  let warn = "";
+  if (phone.value == "") {
+    warn = "Por favor, indica un teléfono";
+    errorValidacion(warn, 7);
+    phone.style.borderColor = "red";
+    phone.style.color = "white";
   } else if (!telefono.test(phone.value)) {
-    alert("Teléfono no válido. El formato debe ser el siguiente: 699-999999, debe empezar por 6 o 9");
-    phone.style.backgroundColor = "red";
-    return false;
+    warn =
+      "Teléfono no válido. El formato debe ser el siguiente: 699-999999, debe empezar por 6 o 9";
+    errorValidacion(warn, 7);
+    phone.style.borderColor = "red";
+    phone.style.color = "white";
+    isValid = false;
   } else {
-    phone.style.backgroundColor = "white";
-    return true;
+    phone.style.borderColor = "#4d4d4d";
+    phone.style.color = "#4d4d4d";
+    eliminarWarn(7);
+    isValid = true;
   }
+  return isValid;
 }
 
 /**
@@ -159,54 +181,48 @@ function validarTlf() {
 function validarEmail() {
   const EMAIL1 = document.querySelector("#email");
   const EMAIL2 = document.querySelector("#email2");
+  let error = "";
 
   //comprueba la coincidencia de los passwords
   if (EMAIL1.value != "") {
     if (EMAIL1.value != EMAIL2.value) {
-      let error = "Los emails introducidos no coinciden.";
-      errorEmail(error);
-      return false; //TODO estos returns en la misma función, ¿se puede hacer por temas de calidad?
-
+      error = "Los emails introducidos no coinciden.";
+      errorValidacion(error, 4);
+      EMAIL1.style.borderColor = "red";
+      EMAIL1.style.color = "white";
+      isValid = false;
     } else if (!email.test(EMAIL1.value)) {
-      let errorFormato = "Formato incorrecto.";
-      errorEmail(errorFormato);
-      return false;
-
+      error = "Formato incorrecto.";
+      errorValidacion(error, 4);
+      EMAIL1.style.borderColor = "red";
+      EMAIL1.style.color = "white";
+      isValid = false;
     } else {
-      let errorMessage = document.getElementById("signup").getElementsByTagName("div")[4];
-      if (errorMessage.nextSibling.nodeName == "P") {
-        errorMessage.nextSibling.remove();
-      } 
-      return true;
+      eliminarWarn(4);
+      EMAIL1.style.borderColor = "#4d4d4d";
+      EMAIL1.style.color = "#4d4d4d";
+      EMAIL2.style.borderColor = "#4d4d4d";
+      EMAIL2.style.color = "#4d4d4d";
+      isValid = true;
     }
+  } else if (EMAIL1.value == "") {
+    error = "Por favor, introduce un email";
+    errorValidacion(error, 4);
+    EMAIL1.style.borderColor = "red";
+    EMAIL1.style.color = "white";
+    isValid = false;
+  } else if (EMAIL2.value == "") {
+    error = "Por favor, repite el email";
+    errorValidacion(error, 4);
+    EMAIL2.style.borderColor = "red";
+    EMAIL2.style.color = "white";
+    isValid = false;
   } else {
-      let errorVacio = "Por favor, introduce un email.";
-      errorEmail(errorVacio);
-      return false;
-    }
-}
-
-/**
- * Función para pintar en pantalla el mensaje de error
- * @param {string} warn mensaje error 
- */
-function errorEmail(msg){
-  let firstDiv = document.getElementById("signup");
-  let warn = document.createElement("p");
-  warn.style.color = "red";
-  warn.style.fontSize = "12px";
-  warn.style.textAlign = "right";
-  warn.innerHTML = msg;
-
-    if (firstDiv.getElementsByTagName("div")[4].nextSibling.nodeName == "P") {
-      firstDiv.getElementsByTagName("div")[4].nextSibling.remove();
-    } 
-  
-    if (firstDiv.getElementsByTagName("div")[4].nextSibling.nodeName != "P") {
-    firstDiv
-      .getElementsByTagName("div")[4]
-      .insertAdjacentElement("afterend", warn);
+    error = "Por favor, introduce un email.";
+    errorValidacion(error, 4);
+    isValid = false;
   }
+  return isValid;
 }
 
 /**
@@ -218,42 +234,109 @@ function validarUser() {
     alert(
       "nombre de usuario incorrecto. el formato debe ser el siguiente: u123456X"
     );
-    user.style.backgroundColor = "red";
-    return false;
+    //TODO pintar p bajo el div
+    user.style.borderColor = "red";
+    user.style.color = "white";
+    isValid = false;
   } else {
-    user.style.backgroundColor = "white";
-    return true;
+    user.style.borderColor = "#4d4d4d";
+    user.style.color = "#4d4d4d";
+    isValid = true;
   }
+  return isValid;
 }
 
+/**
+ * Función para validar que se ha completado el campo password
+ */
 function validarPassword() {
   const PW1 = document.querySelector("#pw1");
   const PW2 = document.querySelector("#pw2");
-  let firstDiv = document.getElementById("signup");
+  let warn = "";
 
-  //comprueba la coincidencia de los passwords
-  if (PW1.value == PW2.value && PW1.value != "") {
-    let warn = document.createElement("p");
-    warn.style.color = "red";
-    warn.style.fontSize = "12px";
-    warn.innerHTML = "Las contraseñas no coinciden.";
+  if (PW1.value == "") {
+    warn = "Por favor, indica una contraseña";
+    PW1.style.borderColor = "red";
+    PW1.style.color = "white";
+    errorValidacion(warn, 9);
+    isValid = false;
+  } else if (PW2.value == "") {
+    warn = "Por favor, repite la contraseña";
+    PW2.style.borderColor = "red";
+    PW2.style.color = "white";
+    errorValidacion(warn, 9);
+    isValid = false;
 
-    //errorEmail -- > puedo reutilizar?
-    //TODO validar que cumple formatos según accesibilidad, actualizar pos y expression
+    //comprueba la coincidencia de los passwords
+  } else if (PW1.value != PW2.value && PW1.value != "") {
+    warn = "Las contraseñas no coinciden.";
+    errorValidacion(warn, 9);
+    isValid = false;
+  } else if (1 == 1) {
+    //corregir
+    //todo validar expresionregular
+  } else {
+    eliminarWarn(9);
+    PW1.style.borderColor = "#4d4d4d";
+    PW1.style.color = "#4d4d4d";
+    PW2.style.borderColor = "#4d4d4d";
+    PW2.style.color = "#4d4d4d";
+    isValid = true;
+  }
+
+  return isValid;
+}
+
+/**
+ * Función para mostrar u ocultar el pw con el click izquierdo del ratón
+ */
+function togglePw(num) {
+  const PW = document.querySelector("#pw" + num);
+  if (event.button == 0) {
+    //solo ejecutar para click izquierdo
+    // toggle the type attribute
+    let type = PW.getAttribute("type") === "password" ? "text" : "password";
+    PW.setAttribute("type", type);
+    // toggle the eye slash icon
+    this.classList.toggle("fa-eye-slash");
   }
 }
 
 /**
- * Función para mostrar u ocultar el pw
+ * Función para pintar en pantalla el mensaje de error bajo los campos afectados
+ * @param {string} warn mensaje error
  */
-function togglePw(num) {
-  const PW = document.querySelector("#pw" + num);
-  // if (event.button == 2) { //TODO onmousedown con derecho no funciona bien
-  // toggle the type attribute
-  let type = PW.getAttribute("type") === "password" ? "text" : "password";
-  PW.setAttribute("type", type);
-  // toggle the eye slash icon
-  this.classList.toggle("fa-eye-slash");
+function errorValidacion(msg, pos) {
+  let firstDiv = document.getElementById("signup");
+  let warn = document.createElement("p");
+  warn.style.color = "red";
+  warn.style.fontSize = "12px";
+  warn.style.textAlign = "right";
+  warn.innerHTML = msg;
+
+  if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName == "P") {
+    firstDiv.getElementsByTagName("div")[pos].nextSibling.remove();
+  }
+
+  if (firstDiv.getElementsByTagName("div")[pos].nextSibling.nodeName != "P") {
+    firstDiv
+      .getElementsByTagName("div")
+      [pos].insertAdjacentElement("afterend", warn);
+  }
+}
+
+/**
+ * Función para eliminar el mensaje de error
+ * @param {int} pos posicion del elemento a eliminar
+ */
+function eliminarWarn(pos) {
+  let errorMessage = document
+    .getElementById("signup")
+    .getElementsByTagName("div")[pos];
+
+  if (errorMessage.nextSibling.nodeName == "P") {
+    errorMessage.nextSibling.remove();
+  }
 }
 
 function openList() {
@@ -275,3 +358,5 @@ $("#l").click(function () {
     }
 })*/
 }
+
+//TODO testeos mocha --> ver carpeta tests-mochaE& en git

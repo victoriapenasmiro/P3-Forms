@@ -32,7 +32,7 @@
   text-transform: uppercase;
   @include padding(15px);
 
-  &:hover{
+  &:hover {
     border: 2px solid $main-color;
     background-color: white;
     color: $main-color;
@@ -76,7 +76,7 @@ body {
     p {
       font-size: $font-mida + 0.2;
       padding-left: $espai;
-      
+
       margin-top: $espai;
       @extend %titulos;
     }
@@ -87,25 +87,20 @@ body {
 
     input {
       margin-top: $espai;
-      
+
       &:focus {
         background-color: #8e661bab;
       }
-  
+
       &:not([type="radio"]) {
         @include padding(8px);
-        width: 76%;
-      }
-
-      &[type="password"] {
-        width: 100%;
       }
 
       &[type="radio"]:last-of-type {
         margin-left: $espai + 3%;
       }
     }
-    
+
     select {
       margin-top: $espai;
       height: 30px;
@@ -117,7 +112,6 @@ body {
     @extend %titulos;
   }
 }
-
 
 button {
   @extend %btn;
@@ -139,7 +133,7 @@ button {
   box-sizing: border-box;
   font-size: 80%;
   width: auto;
-  
+
   &:hover {
     color: white;
     background-color: $main-color;
@@ -158,9 +152,22 @@ button {
 
 /* Responsive design mobile */
 @media screen and (max-width: 799px) {
-  fieldset {
-    div {
-      @include flex-div(column);
+  #signup {
+    margin-left: 10%;
+    margin-right: 10%;
+
+    fieldset {
+      input {
+        width: 80%;
+        
+        &[type="radio"]:last-of-type {
+          margin-top: 25px!important;
+        }
+      }
+
+      div {
+        @include flex-div(column);
+      }
     }
   }
 
@@ -174,7 +181,6 @@ button {
 
 /* Responsive design tablet + desktop */
 @media screen and (min-width: 800px) {
-
   .grid-container {
     grid-template-areas:
       "header header header header"
@@ -185,11 +191,13 @@ button {
   fieldset {
     div {
       @include flex-div(row);
-    }
 
-    // &:nth-child(2) > div,
-    // &:last-of-type > div:last-of-type {
-    //   justify-content: space-between;
-    // }
+      input {
+        &:not([type="radio"]) {
+          @include padding(8px);
+          width: 100%;
+        }
+      }
+    }
   }
 }
