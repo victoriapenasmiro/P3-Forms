@@ -219,7 +219,43 @@ body {
   margin: 0;
 }
 
+main > div:first-of-type {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+main > div:first-of-type > button {
+  margin: 20px;
+}
+main hr {
+  width: 50%;
+  border: 1px solid #8e231b;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+#warnOK {
+  display: none;
+  width: 50%;
+  margin: 0 auto;
+  background-color: #55a846;
+  border-radius: 5px;
+  padding: 40px;
+  color: white;
+  font-family: YuseiMagic;
+  text-align: center;
+  margin-bottom: 5%;
+  position: relative;
+}
+#warnOK .fa-times {
+  display: block;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
 #signup {
+  display: none;
   max-width: 700px;
   box-sizing: border-box;
   margin: 0 auto;
@@ -249,8 +285,11 @@ body {
 #signup > fieldset label,
 #signup > fieldset p {
   font-size: 1.2rem;
-  padding-left: 2%;
   margin-top: 2%;
+}
+#signup > fieldset label[for=pw2],
+#signup > fieldset label[for=email2] {
+  padding-left: 2%;
 }
 #signup > fieldset p {
   margin-top: 4%;
@@ -309,6 +348,10 @@ body {
 
 /* Responsive design mobile */
 @media screen and (max-width: 799px) {
+  #warnOK {
+    font-size: 1rem;
+  }
+
   #signup {
     margin-left: 10%;
     margin-right: 10%;
@@ -329,6 +372,10 @@ body {
 }
 /* Responsive design tablet + desktop */
 @media screen and (min-width: 800px) {
+  #warnOK {
+    font-size: 1.5rem;
+  }
+
   .grid-container {
     grid-template-areas: "header header header header" "main main main main" "footer footer footer footer";
   }

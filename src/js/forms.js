@@ -59,6 +59,20 @@ function iniciar() {
     .getElementsByClassName("fa-times")[0]
     .addEventListener("click", menuMobile);
 
+  document.getElementById("signupBtn").addEventListener("click", function () {
+    this.style.display = "none";
+    document.getElementById("signinBtn").style.display = "block";
+    //document.getElementById("signin").style.display = "none";
+    document.getElementById("signup").style.display = "block";
+  });
+
+  document.getElementById("signinBtn").addEventListener("click", function () {
+    this.style.display = "none";
+    document.getElementById("signupBtn").style.display = "block";
+    document.getElementById("signup").style.display = "none";
+    //document.getElementById("signin").style.display = "block";
+  });
+
   document.getElementById("submit").addEventListener("click", validarForm);
   document.getElementById("fname").addEventListener("focusout", function () {
     validarNombre("fname",0);
@@ -92,38 +106,72 @@ function iniciar() {
     .addEventListener("mouseup", function () {
       togglePw(this,2);
     });
+
+    document.getElementById("closeMsg").addEventListener("click", function () {
+      this.parentElement.style.display = "none";
+    });
 }
 
 /**
  * Función para validar los campos del formulario de registro
  */
 function validarForm() {
-  let isValid;
+  let isValid = false;
+  let ageChecked;
 
-  //todo validar todos campos al perder el focus
-  isValid = validarNombre("fname", 0); //evitar globales
-  isValid = validarNombre("lname", 1);
-  isValid = validarTlf();
-  isValid = validarEmail();
-  isValid = validarUser();
-  isValid = validarPassword();
-
-  // if (validarNombre("fname", 0)) {
-  //   if(validarNombre("lname", 1)) {
-  //     if (validarTlf()) {
-
-  //     }
-  //   }
-  // }
+  if (validarNombre("fname", 0)) {
+    if(validarNombre("lname", 1)) {
+      if (validarTlf()) {
+        if (validarEmail()){
+          if (validarUser()){
+            if (validarPassword()){
+              //para validar si el radio button está seleccionado
+              const AGES = document.querySelectorAll('input[name="age"]');
+              let selectedValue;
+              for (let i = 0; i < AGES.length; i++) {
+                  if (AGES[i].checked) {
+                      isValid = true;
+                      i == 0 ? ageChecked = "-18" : ageChecked = "18";
+                      break;
+                  }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   if (isValid) {
-    let peticion = new Object();
-    peticion.name = document.getElementById("fname").value;
-    peticion.surname = document.getElementById("lname").value;
+    console.info(crearObj(ageChecked));
+    eliminarWarn(3); //elimina el aviso del age
+    document.getElementById("closeMsg").parentElement.style.display = "block";
+    document.getElementById("signup").style.display = "none";
+    document.getElementById("signupBtn").style.display = "block";
 
-    //TODO testar y completar
-    console.info(peticion);
+  } else {
+    //si no es válido es porqué el age no está seleccionado
+    let warn = "Por favor, marca una opción";
+    errorValidacion(warn, 3);
   }
+}
+
+/**
+ * Función para crear el objeto "peticion" con todos los campos rellenador por el usuario.
+ * @param {String} ageChecked radio option selected age indicator
+ */
+function crearObj(ageChecked){
+  let peticion = new Object();
+  peticion.name = document.getElementById("fname").value;
+  peticion.surname = document.getElementById("lname").value;
+  peticion.country = document.getElementById("country").value;
+  peticion.age = ageChecked;
+  peticion.email = document.getElementById("email").value;
+  peticion.tlf = document.getElementById("tlf").value;
+  peticion.user = document.getElementById("username").value;
+  peticion.pw = document.getElementById("pw1").value;
+
+  return peticion
 }
 
 /**
@@ -135,20 +183,18 @@ function validarNombre(str, pos) {
   let name = document.getElementById(str);
   let warn = "";
   let isValid;
-  if (name == "") {
+  if (name.value == "") {
     warn = "Por favor, indica un valor";
-    name.style.borderColor = "red";
+    name.focus();
     errorValidacion(warn, pos);
     isValid = false;
   } else if (!testNombre(name.value)) {
     warn = "Dato inválido. Debe ser min 20 letras y máximo 30.";
-    name.style.borderColor = "red";
+    name.focus();
     errorValidacion(warn, pos);
     isValid = false;
   } else {
     eliminarWarn(pos);
-    name.style.borderColor = "#4d4d4d";
-    name.style.color = "#4d4d4d";
     isValid = true;
   }
   return isValid;
@@ -164,16 +210,14 @@ function validarTlf() {
   if (phone.value == "") {
     warn = "Por favor, indica un teléfono";
     errorValidacion(warn, 7);
-    phone.style.borderColor = "red";
+    phone.focus();
   } else if (!testTlf(phone.value)) {
     warn =
       "Teléfono no válido. El formato debe ser el siguiente: 699-999999, debe empezar por 6 o 9";
     errorValidacion(warn, 7);
-    phone.style.borderColor = "red";
+    phone.focus();
     isValid = false;
   } else {
-    phone.style.borderColor = "#4d4d4d";
-    phone.style.color = "#4d4d4d";
     eliminarWarn(7);
     isValid = true;
   }
@@ -194,30 +238,26 @@ function validarEmail() {
     if (EMAIL1.value != EMAIL2.value) {
       error = "Los emails introducidos no coinciden.";
       errorValidacion(error, 4);
-      EMAIL1.style.borderColor = "red";
+      EMAIL2.focus();
       isValid = false;
     } else if (!testEmail(EMAIL1.value)) {
       error = "Formato incorrecto.";
       errorValidacion(error, 4);
-      EMAIL1.style.borderColor = "red";
+      EMAIL1.focus();
       isValid = false;
     } else {
       eliminarWarn(4);
-      EMAIL1.style.borderColor = "#4d4d4d";
-      EMAIL1.style.color = "#4d4d4d";
-      EMAIL2.style.borderColor = "#4d4d4d";
-      EMAIL2.style.color = "#4d4d4d";
       isValid = true;
     }
   } else if (EMAIL1.value == "") {
     error = "Por favor, introduce un email";
     errorValidacion(error, 4);
-    EMAIL1.style.borderColor = "red";
+    EMAIL1.focus();
     isValid = false;
   } else if (EMAIL2.value == "") {
     error = "Por favor, repite el email";
     errorValidacion(error, 4);
-    EMAIL2.style.borderColor = "red";
+    EMAIL2.focus();
     isValid = false;
   } else {
     error = "Por favor, introduce un email.";
@@ -238,11 +278,9 @@ function validarUser() {
     error =
       "Nombre de usuario incorrecto. El formato debe ser el siguiente: u123456X";
     errorValidacion(error, 8);
-    user.style.borderColor = "red";
+    user.focus();
     isValid = false;
   } else {
-    user.style.borderColor = "#4d4d4d";
-    user.style.color = "#4d4d4d";
     eliminarWarn(8);
     isValid = true;
   }
@@ -260,12 +298,12 @@ function validarPassword() {
 
   if (PW1.value == "") {
     warn = "Por favor, indica una contraseña";
-    PW1.style.borderColor = "red";
+    PW1.focus();
     errorValidacion(warn, 9);
     isValid = false;
   } else if (PW2.value == "") {
     warn = "Por favor, repite la contraseña";
-    PW2.style.borderColor = "red";
+    PW2.focus();
     errorValidacion(warn, 9);
     isValid = false;
 
@@ -273,17 +311,15 @@ function validarPassword() {
   } else if (PW1.value != PW2.value && PW1.value != "") {
     warn = "Las contraseñas no coinciden.";
     errorValidacion(warn, 9);
+    PW2.focus();
     isValid = false;
   } else if (!testPw(PW1.value)) {
     warn = "El formato de contraseña no es correcto.";
     errorValidacion(warn, 9);
+    PW1.focus();
     isValid = false;
   } else {
     eliminarWarn(9);
-    PW1.style.borderColor = "#4d4d4d";
-    PW1.style.color = "#4d4d4d";
-    PW2.style.borderColor = "#4d4d4d";
-    PW2.style.color = "#4d4d4d";
     isValid = true;
   }
 

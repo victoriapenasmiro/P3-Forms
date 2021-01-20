@@ -29,7 +29,17 @@
     <header></header>
     <!-- Button to open the modal -->
     <main>
-      <button>Sign Up</button>
+      <div>
+        <button id="signupBtn">Sign Up</button>
+        <button id="signinBtn">Sign In</button>
+      </div>
+      <hr>
+      <div id="warnOK">
+        <i class="fas fa-times" id="closeMsg"></i>
+        <p>
+          Se ha realizado el registro correctamente.
+        </p>
+      </div>
       <form id="signup" novalidate>
         <fieldset>
           <legend>Personal Data:</legend>
@@ -71,7 +81,7 @@
               </div>
           </div>
           <div>
-              <label for="tlf">Phone Num:</label>
+              <label for="tlf">Phone:</label>
               <input type="text" id="tlf" name="tlf" aria-required="true" placeholder="699-999999"/>
           </div>
         </fieldset>

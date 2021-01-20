@@ -684,7 +684,7 @@ En cualquier caso, debido a la complejidad de estos elementos, y al cambiar los 
 * Las funciones que se han utilizado para las validaciones con MOCHA están en el fichero __validacions_forms.mjs__
 
 * Se han pasado los test de validación correctamente.
-![imagen tests mocha](/src/images/tests-mocha.png999-000000)
+![imagen tests mocha](https://raw.githubusercontent.com/victoriapenasmiro/P3-Forms/main/src/images/tests-mocha.png?token=ANNTVVS4CNHD3RQL6LFUQ7DACBTLE)
 
 ### Releases 📅 :
 * [version]()//TODO
