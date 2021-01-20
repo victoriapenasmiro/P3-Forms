@@ -626,6 +626,10 @@ He cargado una nueva fuente a local y, además he reutilizado las otras que ya s
 
 ### Fases de desarrollo:
 
+#### Cambios header:
+
+He modificado los enlaces *a* del *nav* para incluir un acceso de *Sign up* y *Login*.
+
 #### Accesibilidad:
 
 Se han seguido las normas de accesibilidad en la creación de los formularios:
@@ -634,10 +638,11 @@ Se han seguido las normas de accesibilidad en la creación de los formularios:
 * Uso de etiquetas *fieldset* y *legend*
 * Uso de etiquetas *placeholder* para ayudar al usuario.
 * Se realiza una validación de los campos mediante js y se avisa al usuario de los errores.
-* Se ha implementado atributos de accesibilidad, según [esta guía](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)://TODO
+* Se ha implementado atributos de accesibilidad, según [esta guía](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute):
   - *aria-labelledby*
   - *role*
   - *aria-required*
+* Se muestran mensajes de ayuda al usuario durante la validación de los campos.
 
 #### Formato password:
 
@@ -651,6 +656,12 @@ El formato que he seleccionado que debe seguir la creación de la contraseña es
     - special characters (!, $, etc.)
 
 Me he inspirado en [Amazon](https://www.amazon.com/ask/questions/Tx1QOWSR3MODKB7#:~:text=Passwords%20must%20contain%206%20characters,(!%2C%20%24%2C%20etc.))
+
+### Ampliaciones:
+
+#### Formulario login:
+* Se ha añadido el icoon del ojo para mostrar la contraseña al mantener el botón izquierdo del ratón pulsado.
+* Se validan los formatos de los campos al salir de ellos.
 
 ### Problemas durante el desarrollo:
 

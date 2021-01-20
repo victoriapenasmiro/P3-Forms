@@ -62,6 +62,12 @@ main {
     margin-top: $espai;
     margin-bottom: $espai + 3%;
   }
+
+  h1 {
+    font-family: YuseiMagic;
+    text-align: center;
+    @extend %titulos;
+  }
 }
 
 #warnOK {
@@ -85,11 +91,58 @@ main {
   }
 }
 
-#signup {
-  display: none;
+form {
   max-width: 700px;
   box-sizing: border-box;
   margin: 0 auto;
+
+  &:last-of-type {
+    margin-bottom: $espai + 3%;
+  }
+
+  &#login {
+    display: flex;
+    justify-content: center;
+    width: 700px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      position: relative;
+
+      input {
+        width: 350px;
+      }
+    }
+
+    .togglePassword {
+      cursor: pointer;
+      width: fit-content;
+      position: absolute;
+      right: 22px;
+      margin-top: 75px;
+    }
+
+    input[type="button"] {
+      margin-top: $espai + 8%;
+    }
+
+    a {
+      font-size: small;
+      margin-top: 5%;
+      color: $main-color;
+    }
+  }
+
+  &#signup {
+    display: none;
+
+    .togglePassword {
+      margin-left: -30px;
+      cursor: pointer;
+    }
+  }
 
   > fieldset {
     margin-top: 15px;
@@ -143,7 +196,7 @@ main {
         background-color: #8e661bab;
       }
 
-      &:not([type="radio"]) {
+      &:not([type="button"]) {
         @include padding(8px);
       }
 
@@ -189,11 +242,6 @@ button {
     color: white;
     background-color: $main-color;
   }
-}
-
-.togglePassword {
-  margin-left: -30px;
-  cursor: pointer;
 }
 
 .fa-eye-slash,
@@ -253,7 +301,6 @@ button {
 
       input {
         &:not([type="radio"]) {
-          @include padding(8px);
           width: 100%;
         }
       }

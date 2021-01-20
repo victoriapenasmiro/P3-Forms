@@ -29,6 +29,9 @@
     <header></header>
     <!-- Button to open the modal -->
     <main>
+      <h1>
+        Inicia sesión o regístrate
+      </h1>
       <div>
         <button id="signupBtn">Sign Up</button>
         <button id="signinBtn">Sign In</button>
@@ -106,6 +109,23 @@
           <p>Las contraseñas deben estar comprendidas entre 6 y 16 caracteres. Incluir una letra minuscula, otra mayúscula, un número y un caracter especial.</p>
         </fieldset>
           <input type="button" id="submit" value="Submit" />
+      </form>
+      <form id="login" novalidate>
+        <fieldset>
+          <legend>
+            Iniciar Sesión
+          </legend>
+          <div>
+            <label for="usuario"></label>
+            <input type="text" id="usuario" name="usuario" aria-required="true" placeholder="Introduce tu usuario"/>
+            <label for="pw3"></label>
+            <input type="password" id="pw3" name="pw3" aria-required="true" placeholder="Contraseña"/>
+            <i class="far fa-eye togglePassword"></i>
+            <a href="#">He olvidado mi contraseña</a>
+          </div>
+
+          <input type="button" value="login">
+        </fieldset>
       </form>
     </main>
     <footer></footer>

@@ -188,13 +188,13 @@ nav > div:last-of-type > a:nth-last-child(2) {
     margin-top: 25px;
   }
 }
-button, #signup input[type=button], #signup > fieldset label,
-#signup > fieldset p, #signup > fieldset {
+button, form input[type=button], form > fieldset label,
+form > fieldset p, form > fieldset, main h1 {
   font-weight: 900;
   color: black;
 }
 
-button, #signup input[type=button] {
+button, form input[type=button] {
   background-color: #8e231b;
   color: white;
   border: none;
@@ -209,7 +209,7 @@ button, #signup input[type=button] {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-button:hover, #signup input[type=button]:hover {
+button:hover, form input[type=button]:hover {
   border: 2px solid #8e231b;
   background-color: white;
   color: #8e231b;
@@ -233,6 +233,10 @@ main hr {
   margin-top: 2%;
   margin-bottom: 5%;
 }
+main h1 {
+  font-family: YuseiMagic;
+  text-align: center;
+}
 
 #warnOK {
   display: none;
@@ -254,62 +258,100 @@ main hr {
   top: 20px;
 }
 
-#signup {
-  display: none;
+form {
   max-width: 700px;
   box-sizing: border-box;
   margin: 0 auto;
 }
-#signup > fieldset {
+form:last-of-type {
+  margin-bottom: 5%;
+}
+form#login {
+  display: flex;
+  justify-content: center;
+  width: 700px;
+}
+form#login div {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  position: relative;
+}
+form#login div input {
+  width: 350px;
+}
+form#login .togglePassword {
+  cursor: pointer;
+  width: fit-content;
+  position: absolute;
+  right: 22px;
+  margin-top: 75px;
+}
+form#login input[type=button] {
+  margin-top: 10%;
+}
+form#login a {
+  font-size: small;
+  margin-top: 5%;
+  color: #8e231b;
+}
+form#signup {
+  display: none;
+}
+form#signup .togglePassword {
+  margin-left: -30px;
+  cursor: pointer;
+}
+form > fieldset {
   margin-top: 15px;
   color: #8e231b;
   font-size: 1.5rem;
 }
-#signup > fieldset:last-of-type > p {
+form > fieldset:last-of-type > p {
   font-size: small;
 }
-#signup > fieldset:not(legend) {
+form > fieldset:not(legend) {
   font-family: YuseiMagic;
 }
-#signup > fieldset > legend {
+form > fieldset > legend {
   font-family: Corleone;
   font-weight: 100;
   font-size: 2rem;
   letter-spacing: 2px;
 }
-#signup > fieldset div {
+form > fieldset div {
   display: flex;
   align-items: center;
   width: 100%;
 }
-#signup > fieldset label,
-#signup > fieldset p {
+form > fieldset label,
+form > fieldset p {
   font-size: 1.2rem;
   margin-top: 2%;
 }
-#signup > fieldset label[for=pw2],
-#signup > fieldset label[for=email2] {
+form > fieldset label[for=pw2],
+form > fieldset label[for=email2] {
   padding-left: 2%;
 }
-#signup > fieldset p {
+form > fieldset p {
   margin-top: 4%;
 }
-#signup > fieldset input {
+form > fieldset input {
   margin-top: 2%;
 }
-#signup > fieldset input:focus {
+form > fieldset input:focus {
   background-color: #8e661bab;
 }
-#signup > fieldset input:not([type=radio]) {
+form > fieldset input:not([type=button]) {
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#signup > fieldset input[type=radio]:last-of-type {
+form > fieldset input[type=radio]:last-of-type {
   margin-left: 5%;
 }
-#signup > fieldset select {
+form > fieldset select {
   margin-top: 2%;
   height: 30px;
 }
@@ -334,11 +376,6 @@ main hr {
 #botonTop:hover {
   color: white;
   background-color: #8e231b;
-}
-
-.togglePassword {
-  margin-left: -30px;
-  cursor: pointer;
 }
 
 .fa-eye-slash,
@@ -384,10 +421,6 @@ main hr {
     flex-direction: row;
   }
   fieldset div input:not([type=radio]) {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
-    padding-bottom: 8px;
     width: 100%;
   }
 }
