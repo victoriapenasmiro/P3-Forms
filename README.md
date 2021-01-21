@@ -643,6 +643,9 @@ Se han seguido las normas de accesibilidad en la creación de los formularios:
   - *role*
   - *aria-required*
 * Se muestran mensajes de ayuda al usuario durante la validación de los campos.
+* Se ha utilizado el atributo *autocomplete* en los *input* de username y password para facilitar el autocompletado de los campos si el navegador detecta previamente que han sido rellenados. Este atributo no está soportado por todos los navegadores, pero en mi caso, utilizaba Chrome, y me salína un warning en la consola.
+
+He utilizado la siguiente fuente: [Chromium](https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands)
 
 #### Formato password:
 
@@ -671,6 +674,15 @@ En el formulario de registro tenía configurado un input type submit, mediante e
 
 Sin embargo, los cambios se aplicaban por un segundo y luego desaparecían. Recargaba la página al momento. Debido a esto, he tenido que modificar el *type* del input a *button*.
 
+#### select - Evento al hacer click en la label:
+
+He estado investignado como programar con js que al pinchar en la *label* Country, se abriera automáticamente el *select* de paises, pero no he encontrado una solución pura JS.
+
+Fuentes:
+
+  * [StackOverFlow](https://stackoverflow.com/questions/430237/is-it-possible-to-use-js-to-open-an-html-select-to-show-its-option-list)
+  * [http://jsfiddle.net/krustev/TcZf7/](http://jsfiddle.net/krustev/TcZf7/)
+
 #### Nombre elementos DOM:
 
 Necesitaba recuperar el tipo de elemento de un nodo del DOM, pero no conseguía recuperar el valor correctamente.
@@ -688,6 +700,9 @@ Inicialmente intenté realizar la validación del pattern de la contraseña con 
 [https://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1](https://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1)
 
 En cualquier caso, debido a la complejidad de estos elementos, y al cambiar los requisitos de la práctica acerca de realizar este punto, finalmente la validación se ha combinado con js.
+
+#### error Google Font mostrado en consola:
+Para esta práctica he utilizado tres fuentes, dos instaladas en local. Y una mediante un import a GoogleFonts. Este import me devolvía un error en consola. Encontré la solución modificado el enlace que me marcaba Google en [este foro](https://generatepress.com/forums/topic/console-error-because-of-google-fonts/).
 
 
 ### Validaciones con MOCHA:

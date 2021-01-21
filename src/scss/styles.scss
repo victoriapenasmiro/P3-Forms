@@ -27,7 +27,7 @@
   border-radius: 5px;
   margin: 0 auto;
   display: block;
-  margin-top: $espai + 2%;
+  margin-top: $espai;
   margin-bottom: $espai + 2%;
   text-transform: uppercase;
   @include padding(15px);
@@ -41,214 +41,219 @@
 
 body {
   margin: 0;
-}
 
-main {
-  > div {
-    &:first-of-type {
-      display: flex;
-      justify-content: center;
-      flex-direction: row-reverse;
+  p {
+    font-family: "Open Sans";
+  }
 
-      > button {
-        margin: 20px;
+  main {
+  
+      span {
+        font-family: "Open Sans";
+        background-color: white;
+        text-align: center;
+        display: block;
       }
+    
+
+    > div {
+      &:first-of-type {
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+
+        > button {
+          margin: 20px;
+        }
+      }
+    }
+
+    hr {
+      width: 50%;
+      border: 1px solid $main-color;
+      margin-top: $espai;
+      margin-bottom: $espai;
+    }
+
+    h1 {
+      font-family: YuseiMagic;
+      text-align: center;
+      margin-bottom: $espai+2%;
+      margin-top: $espai+2%;
+      @extend %titulos;
     }
   }
 
-  hr {
+  #warnOK {
+    display: none;
     width: 50%;
-    border: 1px solid $main-color;
-    margin-top: $espai;
-    margin-bottom: $espai;
-  }
-
-  h1 {
+    margin: 0 auto;
+    background-color: #55a846;
+    border-radius: 5px;
+    padding: 40px;
+    color: white;
     font-family: YuseiMagic;
     text-align: center;
-    @extend %titulos;
-  }
-}
-
-#warnOK {
-  display: none;
-  width: 50%;
-  margin: 0 auto;
-  background-color: #55a846;
-  border-radius: 5px;
-  padding: 40px;
-  color: white;
-  font-family: YuseiMagic;
-  text-align: center;
-  margin-bottom: $espai + 3%;
-  position: relative;
-
-  .fa-times {
-    display: block;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
-}
-
-form {
-  max-width: 700px;
-  box-sizing: border-box;
-  margin: 0 auto;
-
-  &:last-of-type {
     margin-bottom: $espai + 3%;
+    position: relative;
+
+    .fa-times {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
   }
 
-  &#login {
-    display: flex;
-    justify-content: center;
-    width: 700px;
+  form {
+    box-sizing: border-box;
+    margin: 0 auto;
 
-    div {
+    &:last-of-type {
+      margin-bottom: $espai;
+    }
+
+    &#login {
       display: flex;
-      flex-direction: column;
-      width: 400px;
-      position: relative;
+      justify-content: center;
 
-      input {
-        width: 350px;
+      div {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .togglePassword {
+        cursor: pointer;
+        width: fit-content;
+        position: absolute;
+      }
+
+      input[type="button"] {
+        margin-top: $espai + 8%;
+      }
+
+      a {
+        font-size: small;
+        margin-top: 5%;
+        color: $main-color;
       }
     }
 
-    .togglePassword {
-      cursor: pointer;
-      width: fit-content;
-      position: absolute;
-      right: 22px;
-      margin-top: 75px;
+    &#signup {
+      display: none;
+
+      .togglePassword {
+        margin-left: -30px;
+        cursor: pointer;
+      }
+    }
+
+    > fieldset {
+      margin-top: 15px;
+      color: $main-color;
+      font-size: $font-mida + 0.5;
+      @extend %titulos;
+
+      &:last-of-type {
+        > p {
+          font-size: small;
+        }
+      }
+
+      &:not(legend) {
+        font-family: YuseiMagic;
+      }
+
+      > legend {
+        font-family: Corleone;
+        font-weight: 100;
+        font-size: $font-mida * 2;
+        letter-spacing: 2px;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      label,
+      p {
+        font-size: $font-mida + 0.2;
+        margin-top: $espai;
+        @extend %titulos;
+      }
+
+      label[for="pw2"],
+      label[for="email2"] {
+        padding-left: $espai;
+      }
+
+      p {
+        margin-top: $espai + 2%;
+      }
+
+      input {
+        margin-top: $espai;
+
+        &:focus {
+          background-color: #8e661bab;
+        }
+
+        &:not([type="button"]) {
+          @include padding(8px);
+        }
+
+        &[type="radio"]:last-of-type {
+          margin-left: $espai + 3%;
+        }
+      }
+
+      select {
+        margin-top: $espai;
+        @include padding(8px);
+      }
     }
 
     input[type="button"] {
-      margin-top: $espai + 8%;
-    }
-
-    a {
-      font-size: small;
-      margin-top: 5%;
-      color: $main-color;
-    }
-  }
-
-  &#signup {
-    display: none;
-
-    .togglePassword {
-      margin-left: -30px;
-      cursor: pointer;
-    }
-  }
-
-  > fieldset {
-    margin-top: 15px;
-    color: $main-color;
-    font-size: $font-mida + 0.5;
-    @extend %titulos;
-
-    &:last-of-type {
-      > p {
-        font-size: small;
-      }
-    }
-
-    &:not(legend) {
-      font-family: YuseiMagic;
-    }
-
-    > legend {
-      font-family: Corleone;
-      font-weight: 100;
-      font-size: $font-mida * 2;
-      letter-spacing: 2px;
-    }
-
-    div {
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    label,
-    p {
-      font-size: $font-mida + 0.2;
-      margin-top: $espai;
+      @extend %btn;
       @extend %titulos;
     }
-
-    label[for="pw2"],
-    label[for="email2"] {
-      padding-left: $espai;
-    }
-
-    p {
-      margin-top: $espai + 2%;
-    }
-
-    input {
-      margin-top: $espai;
-
-      &:focus {
-        background-color: #8e661bab;
-      }
-
-      &:not([type="button"]) {
-        @include padding(8px);
-      }
-
-      &[type="radio"]:last-of-type {
-        margin-left: $espai + 3%;
-      }
-    }
-
-    select {
-      margin-top: $espai;
-      height: 30px;
-    }
   }
 
-  input[type="button"] {
+  button {
     @extend %btn;
     @extend %titulos;
   }
-}
 
-button {
-  @extend %btn;
-  @extend %titulos;
-}
+  .grid-container {
+    display: grid;
+  }
 
-.grid-container {
-  display: grid;
-}
-
-#botonTop {
-  display: none; /* empieza siempre oculto */
-  position: fixed;
-  bottom: 3.3rem;
-  right: 0.3rem;
-  z-index: 99; /* así queda siempre superpuesto */
-  color: white;
-  background-color: #4d4d4d;
-  box-sizing: border-box;
-  font-size: 80%;
-  width: auto;
-
-  &:hover {
+  #botonTop {
+    display: none; /* empieza siempre oculto */
+    position: fixed;
+    bottom: 3.3rem;
+    right: 0.3rem;
+    z-index: 99; /* así queda siempre superpuesto */
     color: white;
-    background-color: $main-color;
+    background-color: #4d4d4d;
+    box-sizing: border-box;
+    font-size: 80%;
+    width: auto;
+
+    &:hover {
+      color: white;
+      background-color: $main-color;
+    }
+  }
+
+  .fa-eye-slash,
+  .fa-eye {
+    font-size: 18px;
   }
 }
-
-.fa-eye-slash,
-.fa-eye {
-  font-size: 18px;
-}
-
 /* Responsive design mobile */
 @media screen and (max-width: 799px) {
   #warnOK {
@@ -280,10 +285,56 @@ button {
       "main"
       "footer";
   }
+
+  #login {
+    div {
+      input {
+        width: 200px;
+      }
+    }
+
+    .togglePassword {
+      right: 5px;
+      margin-top: 63px;
+    }
+  }
 }
 
 /* Responsive design tablet + desktop */
 @media screen and (min-width: 800px) {
+  form {
+    max-width: 700px;
+
+    &#login {
+      width: 700px;
+
+      div {
+        width: 400px;
+
+        input {
+          width: 350px;
+        }
+
+        .togglePassword {
+          right: 22px;
+          margin-top: 75px;
+        }
+      }
+    }
+
+    fieldset {
+      div {
+        @include flex-div(row);
+
+        input {
+          &:not([type="radio"]) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
   #warnOK {
     font-size: $font-mida + 0.5rem;
   }
@@ -293,17 +344,5 @@ button {
       "header header header header"
       "main main main main"
       "footer footer footer footer";
-  }
-
-  fieldset {
-    div {
-      @include flex-div(row);
-
-      input {
-        &:not([type="radio"]) {
-          width: 100%;
-        }
-      }
-    }
   }
 }

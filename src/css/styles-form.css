@@ -188,20 +188,20 @@ nav > div:last-of-type > a:nth-last-child(2) {
     margin-top: 25px;
   }
 }
-button, form input[type=button], form > fieldset label,
-form > fieldset p, form > fieldset, main h1 {
+body button, body form input[type=button], body form > fieldset label,
+body form > fieldset p, body form > fieldset, body main h1 {
   font-weight: 900;
   color: black;
 }
 
-button, form input[type=button] {
+body button, body form input[type=button] {
   background-color: #8e231b;
   color: white;
   border: none;
   border-radius: 5px;
   margin: 0 auto;
   display: block;
-  margin-top: 4%;
+  margin-top: 2%;
   margin-bottom: 4%;
   text-transform: uppercase;
   padding-left: 30px;
@@ -209,7 +209,7 @@ button, form input[type=button] {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-button:hover, form input[type=button]:hover {
+body button:hover, body form input[type=button]:hover {
   border: 2px solid #8e231b;
   background-color: white;
   color: #8e231b;
@@ -218,27 +218,36 @@ button:hover, form input[type=button]:hover {
 body {
   margin: 0;
 }
-
-main > div:first-of-type {
+body p {
+  font-family: "Open Sans";
+}
+body main span {
+  font-family: "Open Sans";
+  background-color: white;
+  text-align: center;
+  display: block;
+}
+body main > div:first-of-type {
   display: flex;
   justify-content: center;
   flex-direction: row-reverse;
 }
-main > div:first-of-type > button {
+body main > div:first-of-type > button {
   margin: 20px;
 }
-main hr {
+body main hr {
   width: 50%;
   border: 1px solid #8e231b;
   margin-top: 2%;
   margin-bottom: 2%;
 }
-main h1 {
+body main h1 {
   font-family: YuseiMagic;
   text-align: center;
+  margin-bottom: 4%;
+  margin-top: 4%;
 }
-
-#warnOK {
+body #warnOK {
   display: none;
   width: 50%;
   margin: 0 auto;
@@ -251,115 +260,108 @@ main h1 {
   margin-bottom: 5%;
   position: relative;
 }
-#warnOK .fa-times {
+body #warnOK .fa-times {
   display: block;
   position: absolute;
   right: 20px;
   top: 20px;
 }
-
-form {
-  max-width: 700px;
+body form {
   box-sizing: border-box;
   margin: 0 auto;
 }
-form:last-of-type {
-  margin-bottom: 5%;
+body form:last-of-type {
+  margin-bottom: 2%;
 }
-form#login {
+body form#login {
   display: flex;
   justify-content: center;
-  width: 700px;
 }
-form#login div {
+body form#login div {
   display: flex;
   flex-direction: column;
-  width: 400px;
   position: relative;
 }
-form#login div input {
-  width: 350px;
-}
-form#login .togglePassword {
+body form#login .togglePassword {
   cursor: pointer;
   width: fit-content;
   position: absolute;
-  right: 22px;
-  margin-top: 75px;
 }
-form#login input[type=button] {
+body form#login input[type=button] {
   margin-top: 10%;
 }
-form#login a {
+body form#login a {
   font-size: small;
   margin-top: 5%;
   color: #8e231b;
 }
-form#signup {
+body form#signup {
   display: none;
 }
-form#signup .togglePassword {
+body form#signup .togglePassword {
   margin-left: -30px;
   cursor: pointer;
 }
-form > fieldset {
+body form > fieldset {
   margin-top: 15px;
   color: #8e231b;
   font-size: 1.5rem;
 }
-form > fieldset:last-of-type > p {
+body form > fieldset:last-of-type > p {
   font-size: small;
 }
-form > fieldset:not(legend) {
+body form > fieldset:not(legend) {
   font-family: YuseiMagic;
 }
-form > fieldset > legend {
+body form > fieldset > legend {
   font-family: Corleone;
   font-weight: 100;
   font-size: 2rem;
   letter-spacing: 2px;
 }
-form > fieldset div {
+body form > fieldset div {
   display: flex;
   align-items: center;
   width: 100%;
 }
-form > fieldset label,
-form > fieldset p {
+body form > fieldset label,
+body form > fieldset p {
   font-size: 1.2rem;
   margin-top: 2%;
 }
-form > fieldset label[for=pw2],
-form > fieldset label[for=email2] {
+body form > fieldset label[for=pw2],
+body form > fieldset label[for=email2] {
   padding-left: 2%;
 }
-form > fieldset p {
+body form > fieldset p {
   margin-top: 4%;
 }
-form > fieldset input {
+body form > fieldset input {
   margin-top: 2%;
 }
-form > fieldset input:focus {
+body form > fieldset input:focus {
   background-color: #8e661bab;
 }
-form > fieldset input:not([type=button]) {
+body form > fieldset input:not([type=button]) {
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
 }
-form > fieldset input[type=radio]:last-of-type {
+body form > fieldset input[type=radio]:last-of-type {
   margin-left: 5%;
 }
-form > fieldset select {
+body form > fieldset select {
   margin-top: 2%;
-  height: 30px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
-.grid-container {
+body .grid-container {
   display: grid;
 }
-
-#botonTop {
+body #botonTop {
   display: none;
   /* empieza siempre oculto */
   position: fixed;
@@ -373,13 +375,12 @@ form > fieldset select {
   font-size: 80%;
   width: auto;
 }
-#botonTop:hover {
+body #botonTop:hover {
   color: white;
   background-color: #8e231b;
 }
-
-.fa-eye-slash,
-.fa-eye {
+body .fa-eye-slash,
+body .fa-eye {
   font-size: 18px;
 }
 
@@ -406,22 +407,46 @@ form > fieldset select {
   .grid-container {
     grid-template-areas: "header" "main" "footer";
   }
+
+  #login div input {
+    width: 200px;
+  }
+  #login .togglePassword {
+    right: 5px;
+    margin-top: 63px;
+  }
 }
 /* Responsive design tablet + desktop */
 @media screen and (min-width: 800px) {
+  form {
+    max-width: 700px;
+  }
+  form#login {
+    width: 700px;
+  }
+  form#login div {
+    width: 400px;
+  }
+  form#login div input {
+    width: 350px;
+  }
+  form#login div .togglePassword {
+    right: 22px;
+    margin-top: 75px;
+  }
+  form fieldset div {
+    flex-direction: row;
+  }
+  form fieldset div input:not([type=radio]) {
+    width: 100%;
+  }
+
   #warnOK {
     font-size: 1.5rem;
   }
 
   .grid-container {
     grid-template-areas: "header header header header" "main main main main" "footer footer footer footer";
-  }
-
-  fieldset div {
-    flex-direction: row;
-  }
-  fieldset div input:not([type=radio]) {
-    width: 100%;
   }
 }
 

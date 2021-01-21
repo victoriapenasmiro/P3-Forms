@@ -126,8 +126,8 @@ function iniciar() {
  * Función para mostrar el formulario de registro
  */
 function registro() {
-  this.style.display = "none";
-  document.getElementById("signinBtn").style.display = "block";
+  //this.style.display = "none";
+  //document.getElementById("signinBtn").style.display = "block";
   document.getElementById("login").style.display = "none";
   document.getElementById("signup").style.display = "block";
   removeActiveClass(
@@ -139,14 +139,28 @@ function registro() {
     .classList.add("active");
   document.getElementsByTagName("h1")[0].innerHTML = "Formulario de registro";
   document.getElementById("login").style.display = "none";
+
+  getPaises(); //pinto los paises
+
+  document.getElementsByTagName("hr")[0].remove();
+  document.getElementsByTagName("h1")[0].nextElementSibling.remove();
+  let signupForm = document.getElementById("signup");
+  let loginBtn = document.createElement("button");
+  let container = document.createElement("div");
+  let tittle = document.createElement("span");
+  tittle.innerHTML = "Do you have an account? Login! <i class=\"fas fa-sign-in-alt\"></i>";
+  container.appendChild(tittle);
+  loginBtn.id = "loginBtn";
+  loginBtn.innerHTML = "Sign In"
+  container.appendChild(loginBtn);
+  signupForm.parentNode.insertBefore(container,signupForm.nextSibling);
+  
 }
 
 /**
  * Función para mostrar el formulario de login
  */
 function login() {
-  this.style.display = "none";
-  document.getElementById("signupBtn").style.display = "block";
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "flex";
   removeActiveClass(
@@ -157,7 +171,22 @@ function login() {
     .getElementsByTagName("a")[4]
     .classList.add("active");
   document.getElementsByTagName("h1")[0].innerHTML = "Formulario de Login";
+
+  document.getElementsByTagName("hr")[0].remove();
+  document.getElementsByTagName("h1")[0].nextElementSibling.remove();
+
+  let loginForm = document.getElementById("login");
+  let registroBtn = document.createElement("button");
+  let container = document.createElement("div");
+  let tittle = document.createElement("span");
+  tittle.innerHTML = "New user? Register NOW! <i class=\"fas fa-user-plus\"></i>";
+  container.appendChild(tittle);
+  registroBtn.id = "signupBtn";
+  registroBtn.innerHTML = "Sign Up"
+  container.appendChild(registroBtn);
+  loginForm.parentNode.insertBefore(container,loginForm.nextSibling);
 }
+
 /**
  * Función para validar los campos del formulario de registro
  */
@@ -463,24 +492,28 @@ function eliminarWarn(pos, id) {
   }
 }
 
-function openList() {
-  //TODO cuando pinche en label country que se despliegue la lista
-  /*   <label id="l">sachin</label>
-    <select id="s">
-        <option>1</option>
-        <option>2</option>        
-        <option>3</option>
-        <option>4</option>
-   </select>  
+/**
+ * Función para recuperar el listado de países desde una conexión API
+ */
+function getPaises() {
+  const API = "https://restcountries.eu/rest/v2/all?fields=name;"
+  let fieldCountries = document.getElementById("country");
+  let xhr = new XMLHttpRequest();
 
-$("#l").click(function () {
-    var size = $('#s option').size();
-    if (size != $("#s").prop('size')) {
-        $("#s").prop('size', size);
-    } else {
-        $("#s").prop('size', 1);
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let JSONdata = this.responseText;
+      let data = JSON.parse(JSONdata);
+
+      data.forEach((country) => {
+        let newCountry = document.createElement("option");
+        newCountry.value = country.name;
+        newCountry.innerHTML = country.name;
+        fieldCountries.appendChild(newCountry);
+      });      
     }
-})*/
-}
+  };
 
-//TODO testeos mocha --> ver carpeta tests-mochaE& en git
+  xhr.open("GET", API, true);
+  xhr.send();
+}
