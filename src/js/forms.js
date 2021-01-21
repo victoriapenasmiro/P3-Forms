@@ -60,10 +60,9 @@ function iniciar() {
     .addEventListener("click", menuMobile);
 
   document.getElementById("signupBtn").addEventListener("click", registro);
-
   document.getElementById("signinBtn").addEventListener("click", login);
 
-  document.getElementById("submit").addEventListener("click", validarForm);
+  document.getElementById("submit").addEventListener("click", validarRegistro);
   document.getElementById("fname").addEventListener("focusout", function () {
     validarNombre("fname", 0);
   });
@@ -74,13 +73,16 @@ function iniciar() {
   document.getElementById("email").addEventListener("focusout", validarEmail);
   document.getElementById("email2").addEventListener("focusout", validarEmail);
   document.getElementById("username").addEventListener("focusout", function () {
-    validarUser("username")});
+    validarUser("username");
+  });
   document.getElementById("usuario").addEventListener("focusout", function () {
-    validarUser("usuario")});
+    validarUser("usuario");
+  });
   document.getElementById("pw1").addEventListener("focusout", validarPassword);
   document.getElementById("pw2").addEventListener("focusout", validarPassword);
   document.getElementById("pw3").addEventListener("focusout", validarPassword);
 
+  document.getElementById("loginBtn").addEventListener("click", validarLogin);
 
   document
     .getElementsByClassName("togglePassword")[0]
@@ -102,8 +104,7 @@ function iniciar() {
     .addEventListener("mouseup", function () {
       togglePw(this, 2);
     });
-
-    document
+  document
     .getElementsByClassName("togglePassword")[2]
     .addEventListener("mousedown", function () {
       togglePw(this, 3);
@@ -113,9 +114,11 @@ function iniciar() {
     .addEventListener("mouseup", function () {
       togglePw(this, 3);
     });
-
   document.getElementById("closeMsg").addEventListener("click", function () {
     this.parentElement.style.display = "none";
+    document.getElementById("login").style.display = "flex";
+    document.getElementById("usuario").value = "";
+    document.getElementById("pw3").value = "";
   });
 }
 
@@ -125,7 +128,7 @@ function iniciar() {
 function registro() {
   this.style.display = "none";
   document.getElementById("signinBtn").style.display = "block";
-  //document.getElementById("signin").style.display = "none";
+  document.getElementById("login").style.display = "none";
   document.getElementById("signup").style.display = "block";
   removeActiveClass(
     document.getElementById("optionsMenu").getElementsByTagName("a")[4]
@@ -145,7 +148,7 @@ function login() {
   this.style.display = "none";
   document.getElementById("signupBtn").style.display = "block";
   document.getElementById("signup").style.display = "none";
-  //document.getElementById("signin").style.display = "block";
+  document.getElementById("login").style.display = "flex";
   removeActiveClass(
     document.getElementById("optionsMenu").getElementsByTagName("a")[3]
   );
@@ -153,12 +156,12 @@ function login() {
     .getElementById("optionsMenu")
     .getElementsByTagName("a")[4]
     .classList.add("active");
-    document.getElementsByTagName("h1")[0].innerHTML = "Formulario de Login";
+  document.getElementsByTagName("h1")[0].innerHTML = "Formulario de Login";
 }
 /**
  * Función para validar los campos del formulario de registro
  */
-function validarForm() {
+function validarRegistro() {
   let isValid = false;
   let ageChecked;
 
@@ -166,7 +169,7 @@ function validarForm() {
     if (validarNombre("lname", 1)) {
       if (validarEmail()) {
         if (validarTlf()) {
-          if (validarUser()) {
+          if (validarUser("username")) {
             if (validarPassword()) {
               //para validar si el radio button está seleccionado
               const AGES = document.querySelectorAll('input[name="age"]');
@@ -187,14 +190,24 @@ function validarForm() {
 
   if (isValid) {
     console.info(crearObj(ageChecked));
-    eliminarWarn(3,"signup"); //elimina el aviso del age
+    eliminarWarn(3, "signup"); //elimina el aviso del age
     document.getElementById("closeMsg").parentElement.style.display = "block";
     document.getElementById("signup").style.display = "none";
     document.getElementById("signupBtn").style.display = "block";
   } else {
     //si no es válido es porqué el age no está seleccionado
     let warn = "Por favor, marca una opción";
-    errorValidacion(warn, 3,"signup");
+    errorValidacion(warn, 3, "signup");
+  }
+}
+
+function validarLogin() {
+  if (validarUser("usuario")) {
+    if (validarPassword()) {
+      document.getElementById("closeMsg").parentElement.style.display = "block";
+      document.getElementById("login").style.display = "none";
+      document.getElementById("loginBtn").style.display = "block";
+    }
   }
 }
 
@@ -228,15 +241,15 @@ function validarNombre(str, pos) {
   if (name.value == "") {
     warn = "Por favor, indica un valor";
     name.focus();
-    errorValidacion(warn, pos,"signup");
+    errorValidacion(warn, pos, "signup");
     isValid = false;
   } else if (!testNombre(name.value)) {
     warn = "Dato inválido. Debe ser min 20 letras y máximo 30.";
     name.focus();
-    errorValidacion(warn, pos,"signup");
+    errorValidacion(warn, pos, "signup");
     isValid = false;
   } else {
-    eliminarWarn(pos,"signup");
+    eliminarWarn(pos, "signup");
     isValid = true;
   }
   return isValid;
@@ -251,16 +264,16 @@ function validarTlf() {
   let isValid;
   if (phone.value == "") {
     warn = "Por favor, indica un teléfono";
-    errorValidacion(warn, 7,"signup");
+    errorValidacion(warn, 7, "signup");
     phone.focus();
   } else if (!testTlf(phone.value)) {
     warn =
       "Teléfono no válido. El formato debe ser el siguiente: 699-999999, debe empezar por 6 o 9";
-    errorValidacion(warn, 7,"signup");
+    errorValidacion(warn, 7, "signup");
     phone.focus();
     isValid = false;
   } else {
-    eliminarWarn(7,"signup");
+    eliminarWarn(7, "signup");
     isValid = true;
   }
   return isValid;
@@ -279,31 +292,31 @@ function validarEmail() {
   if (EMAIL1.value != "") {
     if (EMAIL1.value != EMAIL2.value) {
       error = "Los emails introducidos no coinciden.";
-      errorValidacion(error, 4,"signup");
+      errorValidacion(error, 4, "signup");
       EMAIL2.focus();
       isValid = false;
     } else if (!testEmail(EMAIL1.value)) {
       error = "Formato incorrecto.";
-      errorValidacion(error, 4,"signup");
+      errorValidacion(error, 4, "signup");
       EMAIL1.focus();
       isValid = false;
     } else {
-      eliminarWarn(4,"signup");
+      eliminarWarn(4, "signup");
       isValid = true;
     }
   } else if (EMAIL1.value == "") {
     error = "Por favor, introduce un email";
-    errorValidacion(error, 4,"signup");
+    errorValidacion(error, 4, "signup");
     EMAIL1.focus();
     isValid = false;
   } else if (EMAIL2.value == "") {
     error = "Por favor, repite el email";
-    errorValidacion(error, 4,"signup");
+    errorValidacion(error, 4, "signup");
     EMAIL2.focus();
     isValid = false;
   } else {
     error = "Por favor, introduce un email.";
-    errorValidacion(error, 4,"signup");
+    errorValidacion(error, 4, "signup");
     isValid = false;
   }
   return isValid;
@@ -319,11 +332,15 @@ function validarUser(id) {
   if (!testUser(user.value)) {
     error =
       "Nombre de usuario incorrecto. El formato debe ser el siguiente: u123456X";
-      user == "username" ? errorValidacion(error, 8,"signup") : errorValidacion(error, 0,"login");
+    user.id == "username"
+      ? errorValidacion(error, 8, "signup")
+      : errorValidacion(error, 0, "login");
     user.focus();
     isValid = false;
   } else {
-    user == "username" ? eliminarWarn(8,"signup") : eliminarWarn(0,"login");
+    user.id == "username"
+      ? eliminarWarn(8, "signup")
+      : eliminarWarn(0, "login");
     isValid = true;
   }
   return isValid;
@@ -334,38 +351,63 @@ function validarUser(id) {
  * Es valida tanto para el formulario de registro como el de login
  */
 function validarPassword() {
-  const id = document.getElementById(this.id);
-  const PW1 = document.querySelector("#pw1");
-  const PW2 = document.querySelector("#pw2");
   let isValid;
   let warn = "";
+  let pw;
+  //validación formulario registro
+  if (document.getElementById("login").style.display == "none") {
+    pw = document.querySelector("#pw1");
+    const PW2 = document.querySelector("#pw2");
 
-    if (id.value == "") {
-    warn = "Por favor, indica una contraseña";
-    id.focus();
-    this.id == "pw3" ? errorValidacion(warn, 0, "login") : errorValidacion(warn, 9, "signup");
-    isValid = false;
-  } else if (id== "pw2" && id.value == "") {
-    warn = "Por favor, repite la contraseña";
-    id.focus();
-    errorValidacion(warn, 9, "signup");
-    isValid = false;
-    //comprueba la coincidencia de los passwords
-  } else if (PW1.value != PW2.value && id.value != "") {
-    warn = "Las contraseñas no coinciden.";
-    errorValidacion(warn, 9, "signup");
-    PW2.focus();
-    isValid = false;
-  } else if (!testPw(id.value)) {
-    warn = "El formato de contraseña no es correcto.";
-    id.focus();
-    this.id == "pw3" ? errorValidacion(warn, 0, "login") : errorValidacion(warn, 9, "signup");
-    isValid = false;
+    if (checkPwErrors(pw)) {
+      isValid = true;
+      if (PW2.value == "") {
+        warn = "Por favor, repite la contraseña";
+        PW2.focus();
+        errorValidacion(warn, 9, "signup");
+        isValid = false;
+      } else if (pw.value != PW2.value && pw.value != "") {
+        warn = "Las contraseñas no coinciden.";
+        errorValidacion(warn, 9, "signup");
+        PW2.focus();
+        isValid = false;
+      } else {
+        eliminarWarn(9, "signup");
+      }
+    }
+    //validación formulario login
   } else {
-    this.id == "pw3" ? eliminarWarn(0,"login") : eliminarWarn(9,"signup");
-    isValid = true;
+    pw = document.querySelector("#pw3");
+    if (checkPwErrors(pw)) {
+      isValid = true;
+      eliminarWarn(0, "login");
+    }
   }
+  return isValid;
+}
 
+/**
+ * Función que comprueba si el formato de contraseña introducido es válido
+ * @param {Object} pw input[type="password"] que se tiene que validar
+ */
+function checkPwErrors(pw) {
+  let warn = "";
+  let isValid = true;
+  if (pw.value == "") {
+    warn = "Por favor, indica una contraseña";
+    pw.focus();
+    pw.id == "pw3"
+      ? errorValidacion(warn, 0, "login")
+      : errorValidacion(warn, 9, "signup");
+    isValid = false;
+  } else if (!testPw(pw.value)) {
+    warn = "El formato de contraseña no es correcto.";
+    pw.focus();
+    pw.id == "pw3"
+      ? errorValidacion(warn, 0, "login")
+      : errorValidacion(warn, 9, "signup");
+    isValid = false;
+  }
   return isValid;
 }
 
@@ -411,10 +453,10 @@ function errorValidacion(msg, pos, id) {
  * Función para eliminar el mensaje de error
  * @param {int} pos posicion del elemento a eliminar
  */
-function eliminarWarn(pos,id) {
-  let errorMessage = document
-    .getElementById(id)
-    .getElementsByTagName("div")[pos];
+function eliminarWarn(pos, id) {
+  let errorMessage = document.getElementById(id).getElementsByTagName("div")[
+    pos
+  ];
 
   if (errorMessage.nextSibling.nodeName == "P") {
     errorMessage.nextSibling.remove();
