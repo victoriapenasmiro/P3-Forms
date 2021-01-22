@@ -244,7 +244,7 @@ body main hr {
 body main h1 {
   font-family: YuseiMagic;
   text-align: center;
-  margin-bottom: 4%;
+  margin-bottom: 2%;
   margin-top: 4%;
 }
 body #warnOK {
@@ -269,8 +269,6 @@ body #warnOK .fa-times {
 body form {
   box-sizing: border-box;
   margin: 0 auto;
-}
-body form:last-of-type {
   margin-bottom: 2%;
 }
 body form#login {
@@ -286,9 +284,6 @@ body form#login .togglePassword {
   cursor: pointer;
   width: fit-content;
   position: absolute;
-}
-body form#login input[type=button] {
-  margin-top: 10%;
 }
 body form#login a {
   font-size: small;
@@ -357,6 +352,9 @@ body form > fieldset select {
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
+}
+body form input[type=button] {
+  margin-top: 6%;
 }
 body .grid-container {
   display: grid;

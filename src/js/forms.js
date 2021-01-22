@@ -15,7 +15,7 @@ $(document).ready(() => {
 
 function iniciar() {
   /**** SCROLL TO TOP ****/
-  var botonTop = document.getElementById("botonTop");
+  let botonTop = document.getElementById("botonTop");
   //Función para que al hacer click vuelva al principio:
   botonTop.addEventListener("click", function () {
     document.documentElement.scrollTop = 0;
@@ -51,17 +51,14 @@ function iniciar() {
     .addEventListener("click", function () {
       document.getElementById("signup").style.display = "block";
     });
-
   document
     .getElementsByClassName("fa-bars")[0]
     .addEventListener("click", menuMobile);
   document
     .getElementsByClassName("fa-times")[0]
     .addEventListener("click", menuMobile);
-
   document.getElementById("signupBtn").addEventListener("click", registro);
   document.getElementById("signinBtn").addEventListener("click", login);
-
   document.getElementById("submit").addEventListener("click", validarRegistro);
   document.getElementById("fname").addEventListener("focusout", function () {
     validarNombre("fname", 0);
@@ -81,9 +78,7 @@ function iniciar() {
   document.getElementById("pw1").addEventListener("focusout", validarPassword);
   document.getElementById("pw2").addEventListener("focusout", validarPassword);
   document.getElementById("pw3").addEventListener("focusout", validarPassword);
-
   document.getElementById("loginBtn").addEventListener("click", validarLogin);
-
   document
     .getElementsByClassName("togglePassword")[0]
     .addEventListener("mousedown", function () {
@@ -115,10 +110,7 @@ function iniciar() {
       togglePw(this, 3);
     });
   document.getElementById("closeMsg").addEventListener("click", function () {
-    this.parentElement.style.display = "none";
-    document.getElementById("login").style.display = "flex";
-    document.getElementById("usuario").value = "";
-    document.getElementById("pw3").value = "";
+    location.reload();
   });
 }
 
@@ -126,10 +118,31 @@ function iniciar() {
  * Función para mostrar el formulario de registro
  */
 function registro() {
-  //this.style.display = "none";
-  //document.getElementById("signinBtn").style.display = "block";
+  //controlo si accedo desde un form o desde la primera pantalla
+  let existeHr = document.getElementsByTagName("hr")[0];
+  let signupForm = document.getElementById("signup");
+  let loginBtn = document.createElement("button");
+  let container = document.createElement("div");
+  let tittle = document.createElement("span");
+  tittle.innerHTML =
+    'Do you have an account? Login! <i class="fas fa-sign-in-alt"></i>';
+  container.appendChild(tittle);
+  loginBtn.id = "loginBtn";
+  loginBtn.innerHTML = "Sign In";
+  loginBtn.addEventListener("click", login);
+  container.appendChild(loginBtn);
+  signupForm.parentNode.insertBefore(container, signupForm.nextSibling);
+
   document.getElementById("login").style.display = "none";
   document.getElementById("signup").style.display = "block";
+
+  if (existeHr != null) {
+    document.getElementsByTagName("hr")[0].remove();
+    document.getElementsByTagName("h1")[0].nextElementSibling.remove();
+  } else {
+    document.getElementById("login").nextElementSibling.remove();
+  }
+  
   removeActiveClass(
     document.getElementById("optionsMenu").getElementsByTagName("a")[4]
   );
@@ -137,32 +150,40 @@ function registro() {
     .getElementById("optionsMenu")
     .getElementsByTagName("a")[3]
     .classList.add("active");
+
   document.getElementsByTagName("h1")[0].innerHTML = "Formulario de registro";
   document.getElementById("login").style.display = "none";
-
   getPaises(); //pinto los paises
-
-  document.getElementsByTagName("hr")[0].remove();
-  document.getElementsByTagName("h1")[0].nextElementSibling.remove();
-  let signupForm = document.getElementById("signup");
-  let loginBtn = document.createElement("button");
-  let container = document.createElement("div");
-  let tittle = document.createElement("span");
-  tittle.innerHTML = "Do you have an account? Login! <i class=\"fas fa-sign-in-alt\"></i>";
-  container.appendChild(tittle);
-  loginBtn.id = "loginBtn";
-  loginBtn.innerHTML = "Sign In"
-  container.appendChild(loginBtn);
-  signupForm.parentNode.insertBefore(container,signupForm.nextSibling);
-  
 }
 
 /**
  * Función para mostrar el formulario de login
  */
 function login() {
+  //controlo si accedo desde un form o desde la primera pantalla
+  let existeHr = document.getElementsByTagName("hr")[0];
+  let loginForm = document.getElementById("login");
+  let registroBtn = document.createElement("button");
+  let container = document.createElement("div");
+  let tittle = document.createElement("span");
+  tittle.innerHTML = 'New user? Register NOW! <i class="fas fa-user-plus"></i>';
+  container.appendChild(tittle);
+  registroBtn.id = "signupBtn";
+  registroBtn.innerHTML = "Sign Up";
+  registroBtn.addEventListener("click", registro);
+  container.appendChild(registroBtn);
+  loginForm.parentNode.insertBefore(container, loginForm.nextSibling);
+
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "flex";
+
+  if (existeHr != null) {
+    document.getElementsByTagName("hr")[0].remove();
+    document.getElementsByTagName("h1")[0].nextElementSibling.remove();
+  } else {
+    document.getElementById("signup").nextElementSibling.remove();
+  }
+
   removeActiveClass(
     document.getElementById("optionsMenu").getElementsByTagName("a")[3]
   );
@@ -171,20 +192,6 @@ function login() {
     .getElementsByTagName("a")[4]
     .classList.add("active");
   document.getElementsByTagName("h1")[0].innerHTML = "Formulario de Login";
-
-  document.getElementsByTagName("hr")[0].remove();
-  document.getElementsByTagName("h1")[0].nextElementSibling.remove();
-
-  let loginForm = document.getElementById("login");
-  let registroBtn = document.createElement("button");
-  let container = document.createElement("div");
-  let tittle = document.createElement("span");
-  tittle.innerHTML = "New user? Register NOW! <i class=\"fas fa-user-plus\"></i>";
-  container.appendChild(tittle);
-  registroBtn.id = "signupBtn";
-  registroBtn.innerHTML = "Sign Up"
-  container.appendChild(registroBtn);
-  loginForm.parentNode.insertBefore(container,loginForm.nextSibling);
 }
 
 /**
@@ -221,6 +228,7 @@ function validarRegistro() {
     console.info(crearObj(ageChecked));
     eliminarWarn(3, "signup"); //elimina el aviso del age
     document.getElementById("closeMsg").parentElement.style.display = "block";
+    document.getElementById("signup").nextSibling.remove();
     document.getElementById("signup").style.display = "none";
     document.getElementById("signupBtn").style.display = "block";
   } else {
@@ -231,11 +239,16 @@ function validarRegistro() {
 }
 
 function validarLogin() {
+  //controlo si accedo desde un form o desde la primera pantalla
+  let existeHr = document.getElementsByTagName("hr")[0];
   if (validarUser("usuario")) {
     if (validarPassword()) {
       document.getElementById("closeMsg").parentElement.style.display = "block";
       document.getElementById("login").style.display = "none";
       document.getElementById("loginBtn").style.display = "block";
+      existeHr != ""
+        ? document.getElementById("login").nextSibling.remove()
+        : false;
     }
   }
 }
@@ -496,7 +509,7 @@ function eliminarWarn(pos, id) {
  * Función para recuperar el listado de países desde una conexión API
  */
 function getPaises() {
-  const API = "https://restcountries.eu/rest/v2/all?fields=name;"
+  const API = "https://restcountries.eu/rest/v2/all?fields=name;";
   let fieldCountries = document.getElementById("country");
   let xhr = new XMLHttpRequest();
 
@@ -510,7 +523,7 @@ function getPaises() {
         newCountry.value = country.name;
         newCountry.innerHTML = country.name;
         fieldCountries.appendChild(newCountry);
-      });      
+      });
     }
   };
 

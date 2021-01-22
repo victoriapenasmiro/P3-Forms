@@ -605,6 +605,8 @@ En definitiva, hemos trabajado en equipo intentando utilizar el mismo estilo y f
 
 ## PC3 + P3
 
+Se han realizado todos los puntos solicitados en la práctica, a excepción del overlay que finalmente se eliminó como requisito.
+
 ### Herramientas utilizadas:
 
 * SCASS
@@ -615,7 +617,12 @@ En definitiva, hemos trabajado en equipo intentando utilizar el mismo estilo y f
 
 ### reutilización de funciones:
 
-* He reutilizado algunas funciones de scripts.js, por lo que he modificado el fichero para poder importarlas.
+* He reutilizado algunas funciones de scripts.js, por lo que he modificado el fichero para poder exportarlas.
+
+Al realizarlo, he comprobado que la consola muestra el siguiente error:
+![imagen error consola](https://user-images.githubusercontent.com/56310486/104702590-7f34dd00-5716-11eb-9f95-53315284b60a.png)
+
+No entra en conflicto con los formularios, por lo que según comentado en [la issue 6](https://github.com/victoriapenasmiro/P3-Forms/issues/6), lo hemos dejado así.
 
 ### fuentes utilizadas:
 
@@ -660,11 +667,6 @@ El formato que he seleccionado que debe seguir la creación de la contraseña es
 
 Me he inspirado en [Amazon](https://www.amazon.com/ask/questions/Tx1QOWSR3MODKB7#:~:text=Passwords%20must%20contain%206%20characters,(!%2C%20%24%2C%20etc.))
 
-### Ampliaciones:
-
-#### Formulario login:
-* Se ha añadido el icoon del ojo para mostrar la contraseña al mantener el botón izquierdo del ratón pulsado.
-* Se validan los formatos de los campos al salir de ellos.
 
 ### Problemas durante el desarrollo:
 
@@ -703,7 +705,6 @@ En cualquier caso, debido a la complejidad de estos elementos, y al cambiar los 
 
 #### error Google Font mostrado en consola:
 Para esta práctica he utilizado tres fuentes, dos instaladas en local. Y una mediante un import a GoogleFonts. Este import me devolvía un error en consola. Encontré la solución modificado el enlace que me marcaba Google en [este foro](https://generatepress.com/forums/topic/console-error-because-of-google-fonts/).
-
 
 ### Validaciones con MOCHA:
 
