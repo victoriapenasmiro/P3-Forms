@@ -1,5 +1,4 @@
 import assert from "assert";
-//ver repo https://github.com/classicoman2/tests-mochajs-ES6
 
 import {
   testNombre,
@@ -8,14 +7,6 @@ import {
   testEmail,
   testPw,
 } from "../src/js/modules/validacions_forms.mjs";
-
-/**
- * S’han creat 4 describe i un mínim de 16 it functions, amb la següent distribució:
-5 it functions per la funció de validació de email 
-5 it functions per la funció de validació de username  
-3 it functions per la funció de validació de name password
-3 it functions per la funció de validació de telephone
- */
 
 describe("Función para testar si el campo de nombre se valida correctamente", function () {
   it("Solo se admiten caracteres y debe ser una cadena entre 20 y 30", () => {

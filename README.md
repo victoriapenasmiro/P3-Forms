@@ -714,6 +714,6 @@ Para esta práctica he utilizado tres fuentes, dos instaladas en local. Y una me
 ![imagen tests mocha](https://raw.githubusercontent.com/victoriapenasmiro/P3-Forms/main/src/images/tests-mocha.png?token=ANNTVVS4CNHD3RQL6LFUQ7DACBTLE)
 
 ### Releases 📅 :
-* v4.0 : 22 de Enero de 2021
+* v4.0 : 23 de Enero de 2021
 
 
