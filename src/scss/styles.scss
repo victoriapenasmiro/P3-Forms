@@ -47,14 +47,12 @@ body {
   }
 
   main {
-  
-      span {
-        font-family: "Open Sans";
-        background-color: white;
-        text-align: center;
-        display: block;
-      }
-    
+    span {
+      font-family: "Open Sans";
+      background-color: white;
+      text-align: center;
+      display: block;
+    }
 
     > div {
       &:first-of-type {
@@ -79,7 +77,7 @@ body {
       font-family: YuseiMagic;
       text-align: center;
       margin-bottom: $espai;
-      margin-top: $espai+2%;
+      margin-top: $espai + 2%;
       @extend %titulos;
     }
   }
@@ -205,6 +203,7 @@ body {
 
       select {
         margin-top: $espai;
+        width: 200px;
         @include padding(8px);
       }
     }

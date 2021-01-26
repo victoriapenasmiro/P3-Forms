@@ -348,6 +348,7 @@ body form > fieldset input[type=radio]:last-of-type {
 }
 body form > fieldset select {
   margin-top: 2%;
+  width: 200px;
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 8px;
